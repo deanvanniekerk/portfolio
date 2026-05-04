@@ -1,0 +1,91 @@
+#activity {
+  padding: 6rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.github-stats-row {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+.github-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.github-stat-num {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text);
+  font-family: var(--font-mono);
+  line-height: 1;
+}
+.github-stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.contrib-grid {
+  display: grid;
+  grid-template-columns: repeat(52, 1fr);
+  gap: 3px;
+  margin-bottom: 1rem;
+}
+.contrib-week {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.contrib-day {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 1px;
+  transition: transform 0.2s;
+}
+
+.contrib-day--skeleton {
+  background: var(--bg3) !important;
+  box-shadow: none !important;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.8; }
+}
+
+.stat-loading { color: var(--text-muted); }
+.contrib-day:hover {
+  transform: scale(1.5);
+  z-index: 10;
+  position: relative;
+}
+
+.contrib-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+.legend-items {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+.legend-day {
+  width: 10px;
+  height: 10px;
+  border-radius: 1px;
+}
+
+@media (max-width: 900px) {
+  .contrib-grid { grid-template-columns: repeat(26, 1fr); }
+  .github-stats-row { flex-wrap: wrap; gap: 1.5rem; }
+}
