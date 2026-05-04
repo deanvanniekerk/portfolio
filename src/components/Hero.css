@@ -56,6 +56,8 @@
   animation: fadeUp 0.8s 0.5s forwards;
 }
 .hero-title span { color: var(--blue); }
+.hero-title a { text-decoration: none; }
+.hero-title a:hover span { text-decoration: underline; text-underline-offset: 3px; }
 
 .hero-bio {
   font-size: 1rem;
