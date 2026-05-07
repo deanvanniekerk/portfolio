@@ -26,14 +26,14 @@ interface Skill {
 }
 
 const skills: Skill[] = [
-  { icon: 'typescript', iconColor: '#3178C6', name: 'TypeScript', level: 'Expert · 8+ years', width: 0.95 },
-  { icon: 'react', iconColor: '#61DAFB', name: 'React', level: 'Expert · 7+ years', width: 0.95, delay: 'reveal-delay-1' },
-  { icon: 'nodejs', iconColor: '#5FA04E', name: 'Node.js', level: 'Expert · 8+ years', width: 0.92, delay: 'reveal-delay-2' },
-  { icon: 'postgresql', iconColor: '#4169E1', name: 'PostgreSQL', level: 'Advanced · 6+ years', width: 0.85, delay: 'reveal-delay-3' },
-  { icon: 'git', iconColor: '#F03C2E', name: 'Git', level: 'Expert · Daily driver', width: 0.95, delay: 'reveal-delay-1' },
-  { icon: 'docker', iconColor: '#2496ED', name: 'Docker', level: 'Advanced · Containers', width: 0.82 },
-  { icon: 'dotnet', iconColor: '#512BD4', name: 'C# / .NET', level: 'Intermediate · Backend', width: 0.72, delay: 'reveal-delay-1' },
-  { icon: 'web3js', iconColor: '#F16822', name: 'Web3.js', level: 'Expert · dApp Development', width: 0.92, delay: 'reveal-delay-2' },
+  { icon: 'typescript', iconColor: '#3178C6', name: 'TypeScript', level: 'Expert · Product-scale apps', width: 0.95 },
+  { icon: 'react', iconColor: '#61DAFB', name: 'React', level: 'Expert · Complex interfaces', width: 0.95, delay: 'reveal-delay-1' },
+  { icon: 'nodejs', iconColor: '#5FA04E', name: 'Node.js', level: 'Expert · APIs & services', width: 0.92, delay: 'reveal-delay-2' },
+  { icon: 'postgresql', iconColor: '#4169E1', name: 'PostgreSQL', level: 'Advanced · Data modelling', width: 0.85, delay: 'reveal-delay-3' },
+  { icon: 'git', iconColor: '#F03C2E', name: 'Git', level: 'Daily · Team workflows', width: 0.95, delay: 'reveal-delay-1' },
+  { icon: 'docker', iconColor: '#2496ED', name: 'Docker', level: 'Advanced · Deployment workflows', width: 0.82 },
+  { icon: 'dotnet', iconColor: '#512BD4', name: 'C# / .NET', level: 'Backend systems', width: 0.72, delay: 'reveal-delay-1' },
+  { icon: 'web3js', iconColor: '#F16822', name: 'Web3.js', level: 'Expert · dApps & contracts', width: 0.92, delay: 'reveal-delay-2' },
 ]
 
 export function Skills() {

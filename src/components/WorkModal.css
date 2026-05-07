@@ -7,3 +7,35 @@
 .work-modal-panel .modal-left {
   max-height: none;
 }
+
+.work-modal-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.6rem;
+}
+
+.work-modal-title-row .modal-title {
+  margin-bottom: 0;
+}
+
+.work-modal-logo {
+  width: 3.25rem;
+  height: 3.25rem;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  background: #080d1a;
+  object-fit: cover;
+  box-shadow: 0 14px 36px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 520px) {
+  .work-modal-title-row {
+    align-items: flex-start;
+  }
+
+  .work-modal-logo {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}

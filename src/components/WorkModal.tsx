@@ -28,6 +28,8 @@ export interface WorkModalProps {
   links: WorkModalLink[]
   stats: WorkModalStat[]
   accentLabel?: string
+  logoUrl?: string
+  logoAlt?: string
 }
 
 const GlobeIcon = () => (
@@ -45,7 +47,7 @@ const GithubIcon = () => (
 
 export function WorkModal({
   open, onClose, num, title, role, period, location,
-  desc, highlights, tags, links, stats, accentLabel,
+  desc, highlights, tags, links, stats, accentLabel, logoUrl, logoAlt,
 }: WorkModalProps) {
 
   useEffect(() => {
@@ -72,7 +74,12 @@ export function WorkModal({
           {/* ── LEFT: detail ── */}
           <div className="modal-left">
             <div className="modal-num">{num}</div>
-            <h2 className="modal-title">{title}</h2>
+            <div className="work-modal-title-row">
+              {logoUrl && (
+                <img src={logoUrl} alt={logoAlt ?? `${title} logo`} className="work-modal-logo" />
+              )}
+              <h2 className="modal-title">{title}</h2>
+            </div>
 
             <div className="modal-meta">
               <span className="modal-meta-role">{role}</span>

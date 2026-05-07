@@ -34,8 +34,9 @@ export function Connect() {
           <div className="connect-cta reveal reveal-delay-1">
             <div className="connect-cta-title">Open to work</div>
             <p className="connect-cta-text">
-              Looking for senior/lead engineering roles in fintech or crypto. I build things
-              that scale and teams that last.
+              Open to senior or lead engineering roles where product ownership,
+              real-time systems, fintech, crypto, or Web3 depth matter. I'm strongest
+              where architecture, execution, and team momentum all need to meet.
             </p>
             <a href="mailto:dean@vanniekerk.online" className="btn btn-primary">Send a message →</a>
           </div>

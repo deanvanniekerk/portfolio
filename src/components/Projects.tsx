@@ -3,7 +3,14 @@ import './Projects.css'
 import { ProjectModal } from './ProjectModal'
 import { K53Modal } from './K53Modal'
 import { WorkModal } from './WorkModal'
-import edgeScreenshot from '../assets/edge/screenshot-1.png'
+import edgeScreenshot1 from '../assets/edge/screenshot-1.png'
+import edgeScreenshot2 from '../assets/edge/screenshot-2.png'
+import edgeScreenshot3 from '../assets/edge/screenshot-3.png'
+import edgeLogo from '../assets/edge/logo.svg'
+import aspenBanner from '../assets/aspen/banner.svg'
+import aspenLogo from '../assets/aspen/logo.svg'
+import kurtosysBanner from '../assets/kurtosys/banner.png'
+import kurtosysLogo from '../assets/kurtosys/logo.png'
 
 type VizType = 'chart' | 'network' | 'heatmap' | 'terminal'
 
@@ -122,32 +129,45 @@ interface ProjectCardProps {
   vizType: VizType
   previewLabel: string
   previewImage?: string
+  previewLogo?: string
+  previewLogoText: string
+  previewType?: 'edge'
   delay?: string
   onClick?: () => void
 }
 
-function ProjectCard({ num, name, desc, tags, vizType, previewLabel, previewImage, delay, onClick }: ProjectCardProps) {
+function ProjectCard({
+  num, name, desc, tags, vizType, previewLabel, previewImage, previewLogo, previewLogoText, previewType, delay, onClick,
+}: ProjectCardProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    if (!previewImage && canvasRef.current) drawViz(canvasRef.current, vizType)
-  }, [vizType, previewImage])
+    if (!previewImage && !previewType && canvasRef.current) drawViz(canvasRef.current, vizType)
+  }, [vizType, previewImage, previewType])
 
   useEffect(() => {
     const handleResize = () => {
-      if (!previewImage && canvasRef.current) drawViz(canvasRef.current, vizType)
+      if (!previewImage && !previewType && canvasRef.current) drawViz(canvasRef.current, vizType)
     }
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [vizType, previewImage])
+  }, [vizType, previewImage, previewType])
 
   return (
     <div className={`project-card reveal ${delay ?? ''}`} onClick={onClick}>
       <div className="project-preview">
-        {previewImage
+        {previewType === 'edge'
+          ? <EdgePreview />
+          : previewImage
           ? <img src={previewImage} alt={previewLabel} className="project-preview-screenshot" />
           : <canvas ref={canvasRef} className="project-preview-vis" />
         }
+        <div className="project-preview-shade" />
+        <div className="project-preview-logo" aria-label={`${name} logo`}>
+          {previewLogo
+            ? <img src={previewLogo} alt="" />
+            : <span>{previewLogoText}</span>}
+        </div>
       </div>
       <div className="project-num">
         {num}
@@ -162,42 +182,61 @@ function ProjectCard({ num, name, desc, tags, vizType, previewLabel, previewImag
   )
 }
 
+function EdgePreview() {
+  return (
+    <div className="edge-preview" aria-label="Edge trading platform screenshots">
+      <img src={edgeScreenshot1} alt="" className="edge-preview__shot edge-preview__shot--chart" />
+      <img src={edgeScreenshot2} alt="" className="edge-preview__shot edge-preview__shot--scanner" />
+      <img src={edgeScreenshot3} alt="" className="edge-preview__shot edge-preview__shot--portfolio" />
+      <div className="edge-preview__veil" />
+    </div>
+  )
+}
+
 const projects: ProjectCardProps[] = [
   {
     num: '01 / Featured',
     name: 'Edge Trading Platform',
-    desc: 'High-performance crypto trading platform built from the ground up. Handles real-time market data, order management, and portfolio analytics at scale. Significantly optimized trading efficiency and execution speed.',
+    desc: 'Built the frontend and API for a live crypto trading platform, including real-time market data, TradingView chart integration, order-book updates, portfolio views, and a high-throughput scanner.',
     tags: ['TypeScript', 'React', 'Node.js', 'PostgreSQL', 'WebSockets'],
     vizType: 'chart',
     previewLabel: 'Trading Platform',
-    previewImage: edgeScreenshot,
+    previewType: 'edge',
+    previewLogo: edgeLogo,
+    previewLogoText: 'ED',
   },
   {
     num: '02 / Personal',
     name: 'K53 Study Guide',
-    desc: '100K+ download Android app helping South African learners pass their K53 driver\'s licence test. Features structured study material, an XP-based quiz engine, and dynamically generated mock exams.',
+    desc: 'Solo-built Android study app with 100K+ downloads, a 4.6 rating, and 500+ practice questions. Designed structured lessons, XP-based quizzes, progress tracking, and dynamic mock exams.',
     tags: ['Android', 'Mobile', 'TypeScript', 'React Native'],
     vizType: 'terminal',
     previewLabel: 'Mobile App',
-    previewImage: 'https://play-lh.googleusercontent.com/Aw8Z5L5zW_dBck11Qox3ZlDAsBon3dwbvKDx1GukiRllvmBytDcXxZi3nd0MwAJqDg=w1052-h592-rw',
+    previewLogoText: 'K53',
     delay: 'reveal-delay-1',
   },
   {
     num: '03 / Web3',
     name: 'Aspen NFT Platform',
-    desc: 'Pioneering Web3 membership platform for creators — NFT minting, trading, and white-label storefronts. Led the engineering team at Monax Labs, architecting core features and 0x-based smart contract infrastructure.',
+    desc: 'Led engineering on a Web3 membership platform for NFT minting, trading, and white-label creator storefronts. Architected core product flows, decentralised order-book mechanics, and 0x-based smart contracts.',
     tags: ['TypeScript', 'React', 'Node.js', 'Web3.js', 'Ethers', 'Solidity', '0x'],
     vizType: 'network',
     previewLabel: 'Web3 Platform',
+    previewImage: aspenBanner,
+    previewLogo: aspenLogo,
+    previewLogoText: 'AS',
     delay: 'reveal-delay-2',
   },
   {
     num: '04 / Fintech',
     name: 'Kurtosys Systems',
-    desc: 'Full-stack engineer building tools for international asset managers including BMO, Hermes, and Bank of America. Delivered features end-to-end — DB migrations through to frontend — and mentored junior developers.',
+    desc: 'Built full-stack fintech tooling for international asset managers including BMO, Hermes, and Bank of America Merrill Lynch. Delivered database, backend, and frontend features end-to-end while mentoring junior developers.',
     tags: ['TypeScript', 'React', 'C#', '.NET', 'PostgreSQL', 'SQL'],
     vizType: 'heatmap',
     previewLabel: 'Fintech Platform',
+    previewImage: kurtosysBanner,
+    previewLogo: kurtosysLogo,
+    previewLogoText: 'KS',
     delay: 'reveal-delay-3',
   },
 ]
@@ -208,7 +247,7 @@ const ASPEN_MODAL = {
   role: 'Team Lead · Senior Engineer',
   period: 'Jun 2020 – Oct 2024',
   location: 'Remote',
-  desc: 'Aspen is a pioneering Web3 membership platform that empowers creators to manage, mint, and trade NFTs. As engineering team lead at Monax Labs I architected the core infrastructure and delivered the platform end-to-end.',
+  desc: 'Aspen is a Web3 membership platform for NFT minting, trading, and white-label creator storefronts. As engineering team lead at Monax Labs I architected core product flows, decentralised order-book mechanics, and 0x-based smart contract infrastructure.',
   highlights: [
     'Architected and implemented core features: NFT trading, minting, and membership management.',
     'Deployed and maintained custom 0x smart contracts to facilitate decentralised NFT swaps.',
@@ -217,7 +256,14 @@ const ASPEN_MODAL = {
     'Led a cross-functional engineering team across a 4-year tenure.',
   ],
   tags: ['TypeScript', 'React', 'Node.js', 'Web3.js', 'Ethers', 'Solidity', '0x Protocol'],
-  links: [{ label: 'aspenft.io', sub: 'Live platform', url: 'https://aspenft.io', icon: 'globe' as const }],
+  links: [{
+    label: 'Aspen posts',
+    sub: 'LinkedIn articles',
+    url: 'https://www.linkedin.com/showcase/aspenft/posts/?feedView=articles',
+    icon: 'globe' as const,
+  }],
+  logoUrl: aspenLogo,
+  logoAlt: 'Aspen logo',
   stats: [
     { label: 'Role',     value: 'Team Lead · Senior Engineer' },
     { label: 'Company',  value: 'Monax Labs' },
@@ -233,7 +279,7 @@ const KURTOSYS_MODAL = {
   role: 'Senior Engineer',
   period: 'Oct 2018 – Jun 2020',
   location: 'Cape Town',
-  desc: 'Full-stack engineer building tooling for international asset managers. Clients included BMO, Hermes, and Bank of America – Merrill Lynch. Responsible for architecting and delivering new features across the full stack.',
+  desc: 'Full-stack engineer building fintech tooling for international asset managers. Clients included BMO, Hermes, and Bank of America Merrill Lynch. Responsible for delivering database, backend, and frontend features end-to-end.',
   highlights: [
     'Built tools used by top-tier international asset managers: BMO, Hermes, Bank of America – Merrill Lynch.',
     'Architected and delivered new features across the application.',
@@ -242,6 +288,8 @@ const KURTOSYS_MODAL = {
   ],
   tags: ['TypeScript', 'React', 'C#', '.NET', 'PostgreSQL', 'SQL'],
   links: [{ label: 'kurtosys.com', sub: 'Company website', url: 'https://kurtosys.com', icon: 'globe' as const }],
+  logoUrl: kurtosysLogo,
+  logoAlt: 'Kurtosys logo',
   stats: [
     { label: 'Role',     value: 'Senior Engineer' },
     { label: 'Company',  value: 'Kurtosys Systems' },

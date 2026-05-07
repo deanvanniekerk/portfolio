@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Edge logo</title>
+  <desc id="desc">Neon green wireframe cube mark.</desc>
+  <g fill="none" stroke="#66ff00" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+    <path d="M32 4 57 18.5v29L32 62 7 47.5v-29Z"/>
+    <path d="M32 4v29M7 18.5l25 14.5 25-14.5M7 47.5 32 33l25 14.5"/>
+    <path d="M32 33v29"/>
+  </g>
+</svg>
