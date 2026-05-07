@@ -1,0 +1,246 @@
+import { useEffect, useState } from 'react'
+import './ProjectModal.css'
+import './K53Modal.css'
+
+const SCREENSHOTS = [
+  { src: 'https://k53studyguide.online/assets/screen-study-CKW1r2Yh.webp', label: 'Study' },
+  { src: 'https://k53studyguide.online/assets/screen-dojo-BdUx1Mk5.webp',  label: 'Quiz / Dojo' },
+  { src: 'https://k53studyguide.online/assets/screen5-dPWIPT1E.webp',       label: 'Mock Test' },
+]
+
+interface K53ModalProps {
+  open: boolean
+  onClose: () => void
+}
+
+export function K53Modal({ open, onClose }: K53ModalProps) {
+  const [active, setActive] = useState(0)
+  const [zoomed, setZoomed] = useState(false)
+
+  useEffect(() => {
+    if (!open) return
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = '' }
+  }, [open])
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { if (zoomed) setZoomed(false); else onClose() }
+      if (e.key === 'ArrowRight') setActive((a) => (a + 1) % SCREENSHOTS.length)
+      if (e.key === 'ArrowLeft')  setActive((a) => (a - 1 + SCREENSHOTS.length) % SCREENSHOTS.length)
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [onClose, zoomed])
+
+  if (!open) return null
+
+  const highlights = [
+    'Guided South African learners through the full K53 test preparation process.',
+    'Study section with progress tracker logging sections read.',
+    'Quiz / Dojo section with XP-based level system (Level 1–5) and full progress tracking.',
+    'Mock Test section dynamically generates unique tests — mirrors the real K53 exam format.',
+    'Bank of 500+ practice questions; tests are never repeated.',
+    'One-time premium unlock — no subscription, generous free tier.',
+  ]
+
+  const tags = ['Android', 'Mobile', 'TypeScript', 'React Native']
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-panel" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close" onClick={onClose} aria-label="Close">✕</button>
+
+        <div className="modal-body">
+
+          {/* ── LEFT: detail ── */}
+          <div className="modal-left">
+            <div className="modal-num">02 / Personal Project</div>
+            <h2 className="modal-title">K53 Study Guide</h2>
+
+            <div className="modal-meta">
+              <span className="modal-meta-role">Solo Project</span>
+              <span className="modal-meta-sep">·</span>
+              <span className="modal-meta-date">Android</span>
+              <span className="modal-meta-sep">·</span>
+              <span className="modal-meta-remote">2018 – Present</span>
+            </div>
+
+            <p className="modal-desc">
+              A comprehensive mobile app helping South African learners prepare for and pass
+              their K53 learner's licence test. Built with structured study material, an
+              adaptive quiz engine, and dynamically generated mock exams — entirely solo.
+            </p>
+
+            <div className="modal-highlights">
+              {highlights.map((h, i) => (
+                <div key={i} className="modal-highlight">
+                  <span className="modal-highlight-dot" />
+                  <span>{h}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="modal-tags">
+              {tags.map((t) => <span key={t} className="tag">{t}</span>)}
+            </div>
+
+            {/* Screenshot carousel */}
+            <div className="modal-carousel k53-carousel">
+              <div className="modal-carousel-track k53-carousel-track">
+                {SCREENSHOTS.map((s, i) => (
+                  <img
+                    key={i}
+                    src={s.src}
+                    alt={s.label}
+                    className={`modal-carousel-img ${i === active ? 'active' : ''}`}
+                    onClick={() => i === active && setZoomed(true)}
+                  />
+                ))}
+                <button
+                  className="modal-carousel-arrow modal-carousel-arrow--prev"
+                  onClick={() => setActive((a) => (a - 1 + SCREENSHOTS.length) % SCREENSHOTS.length)}
+                  aria-label="Previous"
+                >‹</button>
+                <button
+                  className="modal-carousel-arrow modal-carousel-arrow--next"
+                  onClick={() => setActive((a) => (a + 1) % SCREENSHOTS.length)}
+                  aria-label="Next"
+                >›</button>
+              </div>
+              <div className="modal-carousel-bar">
+                <span className="modal-carousel-label">{SCREENSHOTS[active].label}</span>
+                <div className="modal-carousel-dots">
+                  {SCREENSHOTS.map((_, i) => (
+                    <button
+                      key={i}
+                      className={`modal-carousel-dot ${i === active ? 'active' : ''}`}
+                      onClick={() => setActive(i)}
+                      aria-label={`Screenshot ${i + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="modal-links">
+              <a href="https://play.google.com/store/apps/details?id=deanvniekerk.k53studyguide.app" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                View on Play Store →
+              </a>
+              <a href="https://k53studyguide.online/" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+                Website
+              </a>
+            </div>
+          </div>
+
+          {/* ── RIGHT: stats panel ── */}
+          <div className="modal-social k53-stats-panel">
+            <div className="modal-social-header">
+              <span className="modal-feed-dot" />
+              Play Store
+            </div>
+
+            {/* Big stats */}
+            <div className="k53-stats">
+              <div className="k53-stat">
+                <div className="k53-stat-value">100K+</div>
+                <div className="k53-stat-label">Downloads</div>
+              </div>
+              <div className="k53-stat-divider" />
+              <div className="k53-stat">
+                <div className="k53-stat-value">
+                  4.6
+                  <span className="k53-stat-star">★</span>
+                </div>
+                <div className="k53-stat-label">Rating</div>
+              </div>
+              <div className="k53-stat-divider" />
+              <div className="k53-stat">
+                <div className="k53-stat-value">418</div>
+                <div className="k53-stat-label">Reviews</div>
+              </div>
+            </div>
+
+            {/* Star bar */}
+            <div className="k53-stars">
+              {[1,2,3,4,5].map((s) => (
+                <span key={s} className={`k53-star-icon ${s <= 4 ? 'filled' : s === 5 ? 'partial' : ''}`}>★</span>
+              ))}
+              <span className="k53-stars-score">4.6 / 5</span>
+            </div>
+
+            <div className="modal-social-divider" />
+
+            {/* Links */}
+            <a
+              href="https://play.google.com/store/apps/details?id=deanvniekerk.k53studyguide.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="modal-social-card"
+            >
+              <div className="modal-social-card-icon k53-playstore-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                  <path d="M3.18 23.76c.3.17.64.24.99.2L15.34 12 11.8 8.46 3.18 23.76zm17.29-11.53L17.6 10.6l-3.54 1.4 3.54 1.4 2.87-1.17a1.1 1.1 0 0 0 0-2.0zM3.54.04a1.1 1.1 0 0 0-.36.92v21.08l8.62-8.62L3.54.04zm8.26 11.96L3.18.24c.35-.04.69.03.99.2L15.34 12l-3.54-3.54z"/>
+                </svg>
+              </div>
+              <div className="modal-social-card-body">
+                <div className="modal-social-card-name">Google Play</div>
+                <div className="modal-social-card-sub">View listing</div>
+              </div>
+              <span className="modal-social-card-arrow">→</span>
+            </a>
+
+            <a
+              href="https://k53studyguide.online/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="modal-social-card"
+            >
+              <div className="modal-social-card-icon modal-social-card-icon--globe">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+              </div>
+              <div className="modal-social-card-body">
+                <div className="modal-social-card-name">k53studyguide.online</div>
+                <div className="modal-social-card-sub">Official website</div>
+              </div>
+              <span className="modal-social-card-arrow">→</span>
+            </a>
+
+            <div className="modal-social-divider" />
+
+            <div className="modal-social-stat">
+              <span className="modal-social-stat-label">Platform</span>
+              <span className="modal-social-stat-value">Android</span>
+            </div>
+            <div className="modal-social-stat">
+              <span className="modal-social-stat-label">Type</span>
+              <span className="modal-social-stat-value">Personal Project</span>
+            </div>
+            <div className="modal-social-stat">
+              <span className="modal-social-stat-label">Last updated</span>
+              <span className="modal-social-stat-value">Dec 2023</span>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Lightbox */}
+        {zoomed && (
+          <div className="modal-lightbox" onClick={() => setZoomed(false)}>
+            <img
+              src={SCREENSHOTS[active].src}
+              alt={SCREENSHOTS[active].label}
+              className="modal-lightbox-img"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <button className="modal-lightbox-close" onClick={() => setZoomed(false)}>✕</button>
+          </div>
+        )}
+
+      </div>
+    </div>
+  )
+}

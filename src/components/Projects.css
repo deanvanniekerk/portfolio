@@ -49,6 +49,15 @@
   width: 100%;
   height: 100%;
 }
+
+.project-preview-screenshot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
 .project-preview-inner {
   font-family: var(--font-mono);
   font-size: 0.65rem;
@@ -68,7 +77,18 @@
   color: var(--text-muted);
   letter-spacing: 0.15em;
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
+.project-expand {
+  color: var(--cyan);
+  font-size: 0.62rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.project-card:hover .project-expand { opacity: 1; }
 .project-name {
   font-size: 1.3rem;
   font-weight: 600;

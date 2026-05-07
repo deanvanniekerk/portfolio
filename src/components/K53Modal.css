@@ -1,0 +1,87 @@
+/* Portrait phone screenshots — taller track */
+.k53-carousel-track {
+  height: 460px !important;
+}
+
+/* ── STATS PANEL ── */
+.k53-stats-panel {
+  gap: 0.6rem;
+}
+
+.k53-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 1.25rem 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.k53-stat {
+  flex: 1;
+  text-align: center;
+}
+
+.k53-stat-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.02em;
+}
+
+.k53-stat-star {
+  font-size: 1.1rem;
+  color: var(--cyan);
+  margin-left: 0.1rem;
+}
+
+.k53-stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.k53-stat-divider {
+  width: 1px;
+  height: 2.5rem;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+/* Star rating bar */
+.k53-stars {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0 0.25rem;
+}
+
+.k53-star-icon {
+  font-size: 1rem;
+  color: var(--border-bright);
+}
+.k53-star-icon.filled  { color: var(--cyan); }
+.k53-star-icon.partial {
+  background: linear-gradient(90deg, var(--cyan) 60%, var(--border-bright) 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.k53-stars-score {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-left: 0.4rem;
+}
+
+/* Play Store icon colour */
+.k53-playstore-icon {
+  background: #01875f !important;
+  color: #fff;
+}

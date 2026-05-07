@@ -1,0 +1,9 @@
+/* Single-column feel — left panel takes more width since there's no carousel */
+.work-modal-panel .modal-body {
+  grid-template-columns: 1fr 300px;
+}
+
+/* Left panel doesn't need to scroll on most screens */
+.work-modal-panel .modal-left {
+  max-height: none;
+}
