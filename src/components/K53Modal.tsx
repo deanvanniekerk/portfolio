@@ -1,11 +1,20 @@
 import { useEffect, useState } from 'react'
 import './ProjectModal.css'
 import './K53Modal.css'
+import screenStudyHome from '../assets/k53/screen-study-home.webp'
+import screenStudyDetail from '../assets/k53/screen-study-detail.webp'
+import screenQuizDashboard from '../assets/k53/screen-quiz-dashboard.webp'
+import screenQuizQuestion from '../assets/k53/screen-quiz-question.webp'
+import screenTestQuestion from '../assets/k53/screen-test-question.webp'
+import screenProfile from '../assets/k53/screen-profile.webp'
 
 const SCREENSHOTS = [
-  { src: 'https://k53studyguide.online/assets/screen-study-CKW1r2Yh.webp', label: 'Study' },
-  { src: 'https://k53studyguide.online/assets/screen-dojo-BdUx1Mk5.webp',  label: 'Quiz / Dojo' },
-  { src: 'https://k53studyguide.online/assets/screen5-dPWIPT1E.webp',       label: 'Mock Test' },
+  { src: screenStudyHome, label: 'Study home' },
+  { src: screenStudyDetail, label: 'Study detail' },
+  { src: screenQuizDashboard, label: 'Quiz dashboard' },
+  { src: screenQuizQuestion, label: 'Quiz question' },
+  { src: screenTestQuestion, label: 'Mock test' },
+  { src: screenProfile, label: 'Profile' },
 ]
 
 interface K53ModalProps {
@@ -44,7 +53,7 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
     'One-time premium unlock — no subscription, generous free tier.',
   ]
 
-  const tags = ['Android', 'Mobile', 'TypeScript', 'React Native']
+  const tags: string[] = ['Mobile', 'TypeScript', 'Ionic', 'Cross Platform'];
 
   return (
     <div className="modal-overlay" onClick={onClose}>

@@ -11,6 +11,8 @@ import aspenBanner from '../assets/aspen/banner.svg'
 import aspenLogo from '../assets/aspen/logo.svg'
 import kurtosysBanner from '../assets/kurtosys/banner.png'
 import kurtosysLogo from '../assets/kurtosys/logo.png'
+import k53Banner from '../assets/k53/banner.webp'
+import k53Logo from '../assets/k53/logo.webp'
 
 type VizType = 'chart' | 'network' | 'heatmap' | 'terminal'
 
@@ -50,7 +52,8 @@ function drawViz(canvas: HTMLCanvasElement, type: VizType) {
     prices.forEach((p, i) => {
       const x = i * bw + bw * 0.5
       const y = h - p * (h * 0.007)
-      i === 0 ? c.moveTo(x, y) : c.lineTo(x, y)
+      if (i === 0) c.moveTo(x, y)
+      else c.lineTo(x, y)
     })
     c.stroke()
     c.globalAlpha = 1
@@ -198,7 +201,7 @@ const projects: ProjectCardProps[] = [
     num: '01 / Featured',
     name: 'Edge Trading Platform',
     desc: 'Built the frontend and API for a live crypto trading platform, including real-time market data, TradingView chart integration, order-book updates, portfolio views, and a high-throughput scanner.',
-    tags: ['TypeScript', 'React', 'Node.js', 'PostgreSQL', 'WebSockets'],
+    tags: ['TypeScript', 'React', 'Node.js', 'PostgreSQL', 'WebSockets', 'TradingView'],
     vizType: 'chart',
     previewLabel: 'Trading Platform',
     previewType: 'edge',
@@ -209,9 +212,11 @@ const projects: ProjectCardProps[] = [
     num: '02 / Personal',
     name: 'K53 Study Guide',
     desc: 'Solo-built Android study app with 100K+ downloads, a 4.6 rating, and 500+ practice questions. Designed structured lessons, XP-based quizzes, progress tracking, and dynamic mock exams.',
-    tags: ['Android', 'Mobile', 'TypeScript', 'React Native'],
+    tags: ['Mobile', 'TypeScript', 'Ionic', 'Cross Platform'],
     vizType: 'terminal',
     previewLabel: 'Mobile App',
+    previewImage: k53Banner,
+    previewLogo: k53Logo,
     previewLogoText: 'K53',
     delay: 'reveal-delay-1',
   },
@@ -219,7 +224,7 @@ const projects: ProjectCardProps[] = [
     num: '03 / Web3',
     name: 'Aspen NFT Platform',
     desc: 'Led engineering on a Web3 membership platform for NFT minting, trading, and white-label creator storefronts. Architected core product flows, decentralised order-book mechanics, and 0x-based smart contracts.',
-    tags: ['TypeScript', 'React', 'Node.js', 'Web3.js', 'Ethers', 'Solidity', '0x'],
+    tags: ['TypeScript', 'React', 'Node.js', 'Viem', 'Solidity', '0x Protocol'],
     vizType: 'network',
     previewLabel: 'Web3 Platform',
     previewImage: aspenBanner,
@@ -231,7 +236,7 @@ const projects: ProjectCardProps[] = [
     num: '04 / Fintech',
     name: 'Kurtosys Systems',
     desc: 'Built full-stack fintech tooling for international asset managers including BMO, Hermes, and Bank of America Merrill Lynch. Delivered database, backend, and frontend features end-to-end while mentoring junior developers.',
-    tags: ['TypeScript', 'React', 'C#', '.NET', 'PostgreSQL', 'SQL'],
+    tags: ['TypeScript', 'React', 'C#', '.NET', 'PostgreSQL', 'SQL', 'Microservices'],
     vizType: 'heatmap',
     previewLabel: 'Fintech Platform',
     previewImage: kurtosysBanner,
@@ -255,7 +260,7 @@ const ASPEN_MODAL = {
     'Engineered the NFT Storefronts feature — white-label storefronts with custom branding and minting.',
     'Led a cross-functional engineering team across a 4-year tenure.',
   ],
-  tags: ['TypeScript', 'React', 'Node.js', 'Web3.js', 'Ethers', 'Solidity', '0x Protocol'],
+  tags: ['TypeScript', 'React', 'Node.js', 'Viem', 'Solidity', '0x Protocol'],
   links: [{
     label: 'Aspen posts',
     sub: 'LinkedIn articles',
@@ -286,7 +291,7 @@ const KURTOSYS_MODAL = {
     'Implemented features end-to-end — database migrations through to the frontend.',
     'Mentored junior developers and conducted code reviews to uphold best practices.',
   ],
-  tags: ['TypeScript', 'React', 'C#', '.NET', 'PostgreSQL', 'SQL'],
+  tags: ['TypeScript', 'React', 'Node.js', 'Viem', 'Solidity', '0x'],
   links: [{ label: 'kurtosys.com', sub: 'Company website', url: 'https://kurtosys.com', icon: 'globe' as const }],
   logoUrl: kurtosysLogo,
   logoAlt: 'Kurtosys logo',

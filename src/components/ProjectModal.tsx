@@ -48,7 +48,7 @@ export function ProjectModal({ open, onClose }: ProjectModalProps) {
     'Collaborated with a small cross-functional international team.',
   ]
 
-  const tags = ['TypeScript', 'React', 'Node.js', 'PostgreSQL', 'TimescaleDB', 'WebSockets', 'TradingView']
+  const tags =['TypeScript', 'React', 'Node.js', 'PostgreSQL', 'WebSockets', 'TradingView']
 
   return (
     <div className="modal-overlay" onClick={onClose}>

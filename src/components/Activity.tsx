@@ -50,11 +50,7 @@ export function Activity() {
     return () => obs.disconnect()
   }, [])
 
-  // Re-trigger count-up once data arrives and section is visible
-  const [countActive, setCountActive] = useState(false)
-  useEffect(() => {
-    if (statsActive && !github.loading) setCountActive(true)
-  }, [statsActive, github.loading])
+  const countActive = statsActive && !github.loading
 
   const commits = useCountUp(github.commits, countActive)
   const yearsOnGitHub = useCountUp(github.yearsOnGitHub, countActive)
