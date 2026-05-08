@@ -17,6 +17,7 @@ nav {
   color: var(--cyan);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -52,4 +53,14 @@ nav {
 @media (max-width: 900px) {
   nav { padding: 1rem; }
   .nav-links { gap: 1rem; }
+}
+
+@media (max-width: 600px) {
+  nav { padding: 0.85rem 0.9rem; }
+  .nav-logo { font-size: 0.72rem; }
+  .nav-links { gap: 0.72rem; }
+  .nav-links a {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+  }
 }
