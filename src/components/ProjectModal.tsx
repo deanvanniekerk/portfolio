@@ -40,15 +40,15 @@ export function ProjectModal({ open, onClose }: ProjectModalProps) {
   if (!open) return null
 
   const highlights = [
-    'Built the Edge frontend and API from scratch, hitting all launch date targets.',
+    'Delivered key frontend and API surfaces for the Edge beta launch.',
     'Integrated TradingView chart widget with a TimescaleDB-backed OHLC API for low-latency candlestick data.',
-    'Implemented a WebSocket server for streaming live price and order-book updates.',
-    'Built the Discovery page — a highly-optimised scanner handling 100s of state updates per second.',
-    'Maintained high performance standards throughout, critical for a live trading application.',
+    'Implemented realtime discovery and trending-pairs flows across SQL/RisingWave views, Kafka/protobuf messages, API routers, and subscription consumers.',
+    'Optimised high-frequency trading interfaces including feed filters, tracked-wallet views, holdings tables, and charting paths.',
+    'Built responsive scanner and discovery experiences with presets, wallet/watchlist source filtering, and quick-trade actions.',
     'Collaborated with a small cross-functional international team.',
   ]
 
-  const tags =['TypeScript', 'React', 'Node.js', 'PostgreSQL', 'WebSockets', 'TradingView']
+  const tags = ['TypeScript', 'React', 'Node.js', 'PostgreSQL', 'TimescaleDB', 'RisingWave', 'Kafka']
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -71,9 +71,10 @@ export function ProjectModal({ open, onClose }: ProjectModalProps) {
             </div>
 
             <p className="modal-desc">
-              A tech startup specialising in cryptocurrency trading solutions. I built the
-              Edge frontend and API end-to-end — from real-time market data infrastructure
-              through to the trading interface used by live customers.
+              A crypto trading startup building realtime trading, discovery, wallet, and
+              alerting tools. I work across the TypeScript monorepo: React/Vite interfaces,
+              API services, SQL migrations, shared schemas, realtime subscriptions, and
+              trading UX.
             </p>
 
             <div className="modal-highlights">

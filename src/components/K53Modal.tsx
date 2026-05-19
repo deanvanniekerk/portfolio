@@ -45,15 +45,15 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
   if (!open) return null
 
   const highlights = [
-    'Guided South African learners through the full K53 test preparation process.',
-    'Study section with progress tracker logging sections read.',
-    'Quiz / Dojo section with XP-based level system (Level 1–5) and full progress tracking.',
-    'Mock Test section dynamically generates unique tests — mirrors the real K53 exam format.',
-    'Bank of 500+ practice questions; tests are never repeated.',
-    'One-time premium unlock — no subscription, generous free tier.',
+    'Built the app solo with React, Ionic, Capacitor, TypeScript, Redux, Vite, and native Android/iOS integrations.',
+    'Implemented the study, quiz, progress, profile, and dynamically generated mock-test flows.',
+    'Added full-funnel Firebase/GA4 analytics covering landing-page handoff, app engagement, premium prompts, checkout, and purchase outcomes.',
+    'Implemented one-time premium unlocks, app-rating prompts, Crashlytics, and Play Store compliance updates.',
+    'Converted the project into a pnpm monorepo with dedicated app and landing-page packages.',
+    'Maintained a production mobile product with 100K+ downloads and a 4.5+ Play Store rating.',
   ]
 
-  const tags: string[] = ['Mobile', 'TypeScript', 'Ionic', 'Cross Platform'];
+  const tags: string[] = ['Mobile', 'TypeScript', 'Ionic', 'Capacitor', 'Firebase'];
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -76,9 +76,9 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
             </div>
 
             <p className="modal-desc">
-              A comprehensive mobile app helping South African learners prepare for and pass
-              their K53 learner's licence test. Built with structured study material, an
-              adaptive quiz engine, and dynamically generated mock exams — entirely solo.
+              Independent production mobile product that I built and operated end-to-end:
+              app architecture, mobile UI, native integrations, analytics, monetisation,
+              landing-page SEO, Play Store compliance, and ongoing release maintenance.
             </p>
 
             <div className="modal-highlights">
@@ -230,7 +230,7 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
             </div>
             <div className="modal-social-stat">
               <span className="modal-social-stat-label">Last updated</span>
-              <span className="modal-social-stat-value">Dec 2023</span>
+              <span className="modal-social-stat-value">Active product</span>
             </div>
           </div>
 

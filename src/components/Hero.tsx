@@ -12,13 +12,13 @@ export function Hero() {
             <div className="last">van Niekerk</div>
           </h1>
           <div className="hero-title">
-            Senior Engineer @ <a href="https://x.com/EdgeTrade" target="_blank" rel="noopener noreferrer"><span>Edge</span></a>&nbsp;·&nbsp;Real-Time Fintech&nbsp;·&nbsp;Full Stack
+            Senior Engineer @ <a href="https://x.com/EdgeTrade" target="_blank" rel="noopener noreferrer"><span>Edge</span></a>&nbsp;·&nbsp;Real-Time Trading&nbsp;·&nbsp;Full Stack
           </div>
           <p className="hero-bio">
             Senior full-stack engineer with 10+ years building production fintech,
-            crypto, and Web3 platforms. I take products from architecture to launch:
-            real-time data, trading interfaces, APIs, performant frontends, and the
-            teams needed to ship them well.
+            crypto, Web3, and mobile products. I take product areas from architecture
+            to launch: real-time data systems, trading interfaces, SQL-backed flows,
+            APIs, performant frontends, and the delivery habits needed to ship well.
           </p>
           <div className="hero-actions">
             <a href="#projects" className="btn btn-primary">View Projects →</a>

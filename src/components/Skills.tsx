@@ -1,3 +1,4 @@
+import { siApachekafka, siTrpc } from 'simple-icons'
 import { TechIcon } from './TechIcon'
 import './Skills.css'
 
@@ -13,6 +14,8 @@ const ICONS = {
   jest: 'M22.251 11.82a3.117 3.117 0 0 0-2.328-3.01L22.911 0H8.104L11.1 8.838a3.116 3.116 0 0 0-2.244 2.988c0 1.043.52 1.967 1.313 2.536a8.279 8.279 0 0 1-1.084 1.244 8.14 8.14 0 0 1-2.55 1.647c-.834-.563-1.195-1.556-.869-2.446a3.11 3.11 0 0 0-.91-6.08 3.117 3.117 0 0 0-3.113 3.113c0 .848.347 1.626.903 2.182-.048.097-.097.195-.146.299-.465.959-.993 2.043-1.195 3.259-.403 2.432.257 4.384 1.849 5.489A5.093 5.093 0 0 0 5.999 24c1.827 0 3.682-.917 5.475-1.807 1.279-.632 2.599-1.292 3.898-1.612.48-.118.98-.187 1.508-.264 1.07-.153 2.175-.312 3.168-.89a4.482 4.482 0 0 0 2.182-3.091c.174-.994 0-1.994-.444-2.87.298-.48.465-1.042.465-1.647z',
   docker: 'M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z',
   dotnet: 'M24 8.77h-2.468v7.565h-1.425V8.77h-2.462V7.53H24zm-6.852 7.565h-4.821V7.53h4.63v1.24h-3.205v2.494h2.953v1.234h-2.953v2.604h3.396zm-6.708 0H8.882L4.78 9.863a2.896 2.896 0 0 1-.258-.51h-.036c.032.189.048.592.048 1.21v5.772H3.157V7.53h1.659l3.965 6.32c.167.261.275.442.323.54h.024c-.04-.233-.06-.629-.06-1.185V7.529h1.372zm-8.703-.693a.868.829 0 0 1-.869.829.868.829 0 0 1-.868-.83.868.829 0 0 1 .868-.828.868.829 0 0 1 .869.829Z',
+  kafka: siApachekafka.path,
+  trpc: siTrpc.path,
 }
 
 interface Skill {
@@ -28,11 +31,11 @@ const skills: Skill[] = [
   { icon: 'typescript', iconColor: '#3178C6', name: 'TypeScript', level: 'Expert · Product-scale apps', width: 0.95 },
   { icon: 'react', iconColor: '#61DAFB', name: 'React', level: 'Expert · Complex interfaces', width: 0.95, delay: 'reveal-delay-1' },
   { icon: 'nodejs', iconColor: '#5FA04E', name: 'Node.js', level: 'Expert · APIs & services', width: 0.92, delay: 'reveal-delay-2' },
-  { icon: 'postgresql', iconColor: '#4169E1', name: 'PostgreSQL', level: 'Advanced · Data modelling', width: 0.85, delay: 'reveal-delay-3' },
-  { icon: 'git', iconColor: '#F03C2E', name: 'Git', level: 'Daily · Team workflows', width: 0.95, delay: 'reveal-delay-1' },
-  { icon: 'docker', iconColor: '#2496ED', name: 'Docker', level: 'Advanced · Deployment workflows', width: 0.82 },
-  { icon: 'dotnet', iconColor: '#512BD4', name: 'C# / .NET', level: 'Backend systems', width: 0.72, delay: 'reveal-delay-1' },
-  { icon: 'ethereum', iconColor: '#8B93FF', name: 'Viem', level: 'Expert · dApps & contracts', width: 0.92, delay: 'reveal-delay-2' },
+  { icon: 'postgresql', iconColor: '#4169E1', name: 'PostgreSQL', level: 'Advanced · SQL-backed flows', width: 0.88, delay: 'reveal-delay-3' },
+  { icon: 'kafka', iconColor: '#2F8FED', name: 'Realtime Data', level: 'RisingWave · Kafka · protobuf', width: 0.86, delay: 'reveal-delay-1' },
+  { icon: 'trpc', iconColor: '#8BC34A', name: 'APIs', level: 'tRPC · Express · schemas', width: 0.9, delay: 'reveal-delay-2' },
+  { icon: 'ethereum', iconColor: '#8B93FF', name: 'Web3', level: 'Viem · Solidity · 0x', width: 0.9, delay: 'reveal-delay-3' },
+  { icon: 'docker', iconColor: '#2496ED', name: 'Delivery', level: 'Docker · CI · testing', width: 0.84 },
 ]
 
 export function Skills() {

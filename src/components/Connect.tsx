@@ -35,8 +35,9 @@ export function Connect() {
             <div className="connect-cta-title">Open to work</div>
             <p className="connect-cta-text">
               Open to senior or lead engineering roles where product ownership,
-              real-time systems, fintech, crypto, or Web3 depth matter. I'm strongest
-              where architecture, execution, and team momentum all need to meet.
+              high-performance TypeScript, realtime systems, fintech, crypto, or Web3
+              depth matter. I'm strongest where architecture, execution, and team momentum
+              all need to meet.
             </p>
             <a href="mailto:dean@vanniekerk.online" className="btn btn-primary">Send a message →</a>
           </div>
