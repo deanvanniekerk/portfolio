@@ -129,7 +129,7 @@ export function ProjectModal({ open, onClose }: ProjectModalProps) {
             </div>
 
             <div className="modal-links">
-              <a href="https://edge.trade/scanner" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+              <a href="https://edge.trade" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
                 Open App →
               </a>
             </div>
@@ -159,7 +159,7 @@ export function ProjectModal({ open, onClose }: ProjectModalProps) {
             </a>
 
             <a
-              href="https://edge.trade/scanner"
+              href="https://edge.trade"
               target="_blank"
               rel="noopener noreferrer"
               className="modal-social-card"

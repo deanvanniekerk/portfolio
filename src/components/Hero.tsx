@@ -12,7 +12,7 @@ export function Hero() {
             <div className="last">van Niekerk</div>
           </h1>
           <div className="hero-title">
-            Senior Engineer @ <a href="https://x.com/EdgeTrade" target="_blank" rel="noopener noreferrer"><span>Edge</span></a>&nbsp;·&nbsp;Real-Time Trading&nbsp;·&nbsp;Full Stack
+            Senior Engineer @ <a href="https://edge.trade" target="_blank" rel="noopener noreferrer"><span>Edge</span></a>&nbsp;·&nbsp;Real-Time Trading&nbsp;·&nbsp;Full Stack
           </div>
           <p className="hero-bio">
             Senior full-stack engineer with 10+ years building production fintech,
