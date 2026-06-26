@@ -3,11 +3,11 @@ import { useGitHub } from '../hooks/useGitHub'
 import './Activity.css'
 
 const CONTRIB_COLORS = [
-  '#0d1117',
-  'oklch(35% 0.18 240)',
-  'oklch(50% 0.22 240)',
-  'oklch(65% 0.25 240)',
-  'oklch(78% 0.2 195)',
+  '#18211b',
+  'rgba(64, 206, 126, 0.26)',
+  'rgba(64, 206, 126, 0.48)',
+  'rgba(64, 206, 126, 0.74)',
+  '#62e29a',
 ]
 
 function useCountUp(target: number, active: boolean, duration = 1800) {
@@ -69,7 +69,7 @@ export function Activity() {
   return (
     <section id="activity" ref={sectionRef}>
       <div className="page-wrapper">
-        <div className="section-label reveal">Activity</div>
+        <div className="section-label reveal">04 — Activity</div>
         <h2 className="section-title reveal reveal-delay-1">GitHub Activity</h2>
 
         <div className="github-stats-row reveal">
@@ -93,39 +93,43 @@ export function Activity() {
           </div>
         </div>
 
-        <div className="contrib-grid reveal reveal-delay-1">
-          {weeks.map((week, wi) => (
-            <div key={wi} className="contrib-week">
-              {week.map((day, di) => (
-                <div
-                  key={di}
-                  className="contrib-day"
-                  style={{
-                    background: CONTRIB_COLORS[day.level] ?? CONTRIB_COLORS[0],
-                    boxShadow: day.level > 2 ? `0 0 4px ${CONTRIB_COLORS[day.level]}` : 'none',
-                  }}
-                />
+        <div className="contrib-card reveal reveal-delay-1">
+          <div className="contrib-scroll">
+            <div className="contrib-grid">
+              {weeks.map((week, wi) => (
+                <div key={wi} className="contrib-week">
+                  {week.map((day, di) => (
+                    <div
+                      key={di}
+                      className="contrib-day"
+                      style={{
+                        background: CONTRIB_COLORS[day.level] ?? CONTRIB_COLORS[0],
+                        boxShadow: day.level > 2 ? `0 0 4px ${CONTRIB_COLORS[day.level]}` : 'none',
+                      }}
+                    />
+                  ))}
+                </div>
+              ))}
+              {weeks.length === 0 &&
+                Array.from({ length: 52 }, (_, wi) => (
+                  <div key={wi} className="contrib-week">
+                    {Array.from({ length: 7 }, (_, di) => (
+                      <div key={di} className="contrib-day contrib-day--skeleton" />
+                    ))}
+                  </div>
+                ))}
+            </div>
+          </div>
+
+          <div className="contrib-legend">
+            <span>Less</span>
+            <div className="legend-items">
+              {CONTRIB_COLORS.map((c) => (
+                <div key={c} className="legend-day" style={{ background: c }} />
               ))}
             </div>
-          ))}
-          {weeks.length === 0 &&
-            Array.from({ length: 52 }, (_, wi) => (
-              <div key={wi} className="contrib-week">
-                {Array.from({ length: 7 }, (_, di) => (
-                  <div key={di} className="contrib-day contrib-day--skeleton" />
-                ))}
-              </div>
-            ))}
-        </div>
-
-        <div className="contrib-legend reveal reveal-delay-2">
-          <span>Less</span>
-          <div className="legend-items">
-            {CONTRIB_COLORS.map((c) => (
-              <div key={c} className="legend-day" style={{ background: c }} />
-            ))}
+            <span>More</span>
           </div>
-          <span>More</span>
         </div>
       </div>
     </section>

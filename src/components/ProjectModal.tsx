@@ -63,16 +63,16 @@ export function ProjectModal({ open, onClose }: ProjectModalProps) {
             <h2 className="modal-title">Edge Trading Platform</h2>
 
             <div className="modal-meta">
-              <span className="modal-meta-role">Senior Engineer</span>
+              <span className="modal-meta-role">Former Senior Engineer</span>
               <span className="modal-meta-sep">·</span>
-              <span className="modal-meta-date">Oct 2024 – Present</span>
+              <span className="modal-meta-date">Oct 2024 – 2026</span>
               <span className="modal-meta-sep">·</span>
               <span className="modal-meta-remote">Remote</span>
             </div>
 
             <p className="modal-desc">
               A crypto trading startup building realtime trading, discovery, wallet, and
-              alerting tools. I work across the TypeScript monorepo: React/Vite interfaces,
+              alerting tools. I worked across the TypeScript monorepo: React/Vite interfaces,
               API services, SQL migrations, shared schemas, realtime subscriptions, and
               trading UX.
             </p>
@@ -182,16 +182,16 @@ export function ProjectModal({ open, onClose }: ProjectModalProps) {
             <div className="modal-social-stat">
               <span className="modal-social-stat-label">Status</span>
               <span className="modal-social-stat-value">
-                <span className="modal-feed-dot modal-feed-dot--sm" /> Live
+                <span className="modal-feed-dot modal-feed-dot--sm" /> Past role
               </span>
             </div>
             <div className="modal-social-stat">
               <span className="modal-social-stat-label">Role</span>
-              <span className="modal-social-stat-value">Senior Engineer</span>
+              <span className="modal-social-stat-value">Former Senior Engineer</span>
             </div>
             <div className="modal-social-stat">
-              <span className="modal-social-stat-label">Since</span>
-              <span className="modal-social-stat-value">Oct 2024</span>
+              <span className="modal-social-stat-label">Period</span>
+              <span className="modal-social-stat-value">Oct 2024 – 2026</span>
             </div>
             <div className="modal-social-stat">
               <span className="modal-social-stat-label">Type</span>

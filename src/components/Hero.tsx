@@ -5,40 +5,40 @@ export function Hero() {
   return (
     <div className="page-wrapper">
       <section id="hero">
-        <div className="hero-content">
+        <div className="hero-content reveal">
           <div className="hero-tag">Senior Engineer · Building since 2013</div>
           <h1 className="hero-name">
-            <div className="first">Dean</div>
-            <div className="last">van Niekerk</div>
+            <span className="first">Dean</span>
+            <span className="last">van Niekerk</span>
           </h1>
           <div className="hero-title">
-            Senior Engineer @ <a href="https://edge.trade" target="_blank" rel="noopener noreferrer"><span>Edge</span></a>&nbsp;·&nbsp;Real-Time Trading&nbsp;·&nbsp;Full Stack
+            Senior Engineer · Real-Time Systems · Full Stack
           </div>
-          <p className="hero-bio">
-            Senior full-stack engineer with 10+ years building production fintech,
-            crypto, Web3, and mobile products. I take product areas from architecture
-            to launch: real-time data systems, trading interfaces, SQL-backed flows,
-            APIs, performant frontends, and the delivery habits needed to ship well.
-          </p>
+
+          <div className="hero-summary">
+            <div className="hero-visual" data-parallax="0.05">
+              <div className="avatar-glow" />
+              <img src={avatarImg} alt="Dean van Niekerk" />
+            </div>
+            <p className="hero-bio">
+              Senior Software Engineer with 10+ years of experience building full-stack
+              product systems across React, TypeScript, Node.js, PostgreSQL, real-time
+              APIs, and data-heavy interfaces. Strongest in fast-moving product teams
+              where frontend, backend, architecture, performance, and delivery ownership
+              overlap.
+            </p>
+          </div>
+
           <div className="hero-actions">
             <a href="#projects" className="btn btn-primary">View Projects →</a>
             <a href="#connect" className="btn btn-ghost">Get in Touch</a>
           </div>
         </div>
 
-        <div className="hero-visual">
-          <div className="avatar-container">
-            <div className="avatar-glow" />
-            <div className="hex-ring" />
-            <div className="avatar-img-wrap">
-              <img src={avatarImg} alt="Dean van Niekerk" />
-            </div>
-          </div>
-          <div className="status-badge">
-            <div className="status-dot" />
-            Senior Engineer at Edge
-          </div>
-        </div>
+        <aside className="hero-status reveal reveal-delay-2">
+          <span className="status-dot" />
+          Open to senior engineering roles
+        </aside>
       </section>
     </div>
   )

@@ -25,13 +25,13 @@ const rules = [
   'Keep fundamentals sharp by explaining the solution back to myself.',
 ]
 
-const tools = ['Codex + GPT-5.5', 'Cursor']
+const tools = ['Codex + GPT-5.5', 'Claude Code + Opus 4.8', 'Cursor']
 
 export function AiWorkflow() {
   return (
     <section id="ai-workflow">
       <div className="page-wrapper">
-        <div className="section-label reveal">AI Workflow</div>
+        <div className="section-label reveal">02 — AI Workflow</div>
         <div className="ai-layout">
           <div className="ai-intro reveal reveal-delay-1">
             <h2 className="section-title">AI as leverage, not autopilot.</h2>

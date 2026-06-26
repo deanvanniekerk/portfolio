@@ -1,41 +1,29 @@
-#bg-canvas {
+.ambient-background {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  overflow: hidden;
 }
 
-.grid-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(40, 100, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(40, 100, 255, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-.scanline {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-  z-index: 100;
-  animation: scan 8s linear infinite;
-  pointer-events: none;
-  opacity: 0.5;
-  display: none;
-}
-
-.cursor-glow {
-  position: fixed;
-  width: 400px;
-  height: 400px;
+.ambient-field {
+  position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(40, 100, 255, 0.06) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 1;
-  transform: translate(-50%, -50%);
-  transition: left 0.1s, top 0.1s;
+  will-change: transform;
+}
+
+.ambient-field--top {
+  top: -12%;
+  right: -8%;
+  width: min(60vw, 760px);
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(64, 206, 126, 0.13), transparent 62%);
+}
+
+.ambient-field--bottom {
+  bottom: -20%;
+  left: -12%;
+  width: min(55vw, 680px);
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(40, 163, 95, 0.07), transparent 60%);
 }

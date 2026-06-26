@@ -42,8 +42,15 @@ export function Skills() {
   return (
     <section id="skills">
       <div className="page-wrapper">
-        <div className="section-label reveal">Core Stack</div>
-        <h2 className="section-title reveal reveal-delay-1">Technologies</h2>
+        <div className="section-heading">
+          <div>
+            <div className="section-label reveal">01 — Core Stack</div>
+            <h2 className="section-title reveal reveal-delay-1">Technologies</h2>
+          </div>
+          <p className="section-kicker reveal reveal-delay-2">
+            The stack I reach for to take product areas from architecture all the way to launch.
+          </p>
+        </div>
         <div className="skills-grid">
           {skills.map((skill) => (
             <div key={skill.name} className={`skill-card reveal ${skill.delay ?? ''}`}>
