@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { type MouseEvent, useEffect, useState } from 'react'
 import './ProjectModal.css'
 import './K53Modal.css'
 import screenStudyHome from '../assets/k53/screen-study-home.webp'
@@ -25,6 +25,11 @@ interface K53ModalProps {
 export function K53Modal({ open, onClose }: K53ModalProps) {
   const [active, setActive] = useState(0)
   const [zoomed, setZoomed] = useState(false)
+
+  const closeZoom = (event?: MouseEvent<HTMLElement>) => {
+    event?.stopPropagation()
+    setZoomed(false)
+  }
 
   useEffect(() => {
     if (!open) return
@@ -236,20 +241,19 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
 
         </div>
 
-        {/* Lightbox */}
-        {zoomed && (
-          <div className="modal-lightbox" onClick={() => setZoomed(false)}>
-            <img
-              src={SCREENSHOTS[active].src}
-              alt={SCREENSHOTS[active].label}
-              className="modal-lightbox-img"
-              onClick={(e) => e.stopPropagation()}
-            />
-            <button className="modal-lightbox-close" onClick={() => setZoomed(false)}>✕</button>
-          </div>
-        )}
-
       </div>
+
+      {zoomed && (
+        <div className="modal-lightbox" onClick={closeZoom} role="dialog" aria-modal="true">
+          <img
+            src={SCREENSHOTS[active].src}
+            alt={SCREENSHOTS[active].label}
+            className="modal-lightbox-img"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <button className="modal-lightbox-close" onClick={closeZoom} aria-label="Close enlarged image">✕</button>
+        </div>
+      )}
     </div>
   )
 }
