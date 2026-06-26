@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin:0; background:#0e120f; color:#e9efe9; font-family:'Geist',sans-serif; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+  ::selection { background:rgba(64,206,126,.3); color:#fff; }
+  ::-webkit-scrollbar { width:9px; height:9px; }
+  ::-webkit-scrollbar-track { background:#0e120f; }
+  ::-webkit-scrollbar-thumb { background:#2f3a31; border-radius:0; }
+  ::-webkit-scrollbar-thumb:hover { background:#40ce7e; }
+  a { color:inherit; text-decoration:none; }
+  @keyframes dvnPulse { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:.45; transform:scale(.82); } }
+  @keyframes dvnFloat { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-9px); } }
+  @keyframes dvnDrift { 0%{ transform:translateY(0); } 100%{ transform:translateY(-12px); } }
+  [data-reveal] { opacity:0; }
+  [data-reveal][data-shown] { opacity:1; }
+  @media (prefers-reduced-motion: reduce) { [data-reveal]{opacity:1 !important;} [data-parallax]{transform:none !important;} }
+</style>
+</helmet>
+
+<div style="position:relative; width:100%; overflow:hidden">
+
+  <!-- ambient warm field -->
+  <div data-parallax="0.04" style="position:fixed; top:-12%; right:-8%; width:60vw; height:60vw; max-width:760px; max-height:760px; border-radius:50%; background:radial-gradient(circle, rgba(64,206,126,.13), transparent 62%); pointer-events:none; z-index:0; will-change:transform"></div>
+  <div data-parallax="0.06" style="position:fixed; bottom:-20%; left:-12%; width:55vw; height:55vw; max-width:680px; max-height:680px; border-radius:50%; background:radial-gradient(circle, rgba(40,163,95,.07), transparent 60%); pointer-events:none; z-index:0; will-change:transform"></div>
+
+  <!-- ============ NAV ============ -->
+  <nav style="position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:20px clamp(20px,5vw,72px); background:rgba(21,17,10,.72); backdrop-filter:blur(14px); border-bottom:1px solid rgba(235,242,236,.07)">
+    <a href="#top" style="display:flex; align-items:center; gap:11px; font:600 16px/1 'Geist',sans-serif; letter-spacing:-.01em; color:#e9efe9">
+      <span style="width:9px; height:9px; border-radius:50%; background:#40ce7e; box-shadow:0 0 12px #40ce7e; animation:dvnPulse 2.6s ease-in-out infinite"></span>
+      Dean van Niekerk
+    </a>
+    <div style="display:flex; gap:clamp(16px,2.4vw,34px); font:500 13px/1 'Geist',sans-serif; color:#8d968c">
+      <a href="#skills" style="transition:color .25s" onMouseEnter="{{ navHover }}" onMouseLeave="{{ navLeave }}">Skills</a>
+      <a href="#ai-workflow" style="transition:color .25s" onMouseEnter="{{ navHover }}" onMouseLeave="{{ navLeave }}">AI</a>
+      <a href="#projects" style="transition:color .25s" onMouseEnter="{{ navHover }}" onMouseLeave="{{ navLeave }}">Work</a>
+      <a href="#activity" style="transition:color .25s" onMouseEnter="{{ navHover }}" onMouseLeave="{{ navLeave }}">Activity</a>
+      <a href="#connect" style="transition:color .25s" onMouseEnter="{{ navHover }}" onMouseLeave="{{ navLeave }}">Connect</a>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section id="top" style="position:relative; z-index:2; max-width:1240px; margin:0 auto; padding:clamp(64px,11vh,140px) clamp(20px,5vw,72px) clamp(60px,9vh,110px)">
+    <div data-reveal style="font:500 12px/1 'JetBrains Mono',monospace; letter-spacing:.24em; text-transform:uppercase; color:#40ce7e">
+      Senior Engineer · Building since 2013
+    </div>
+
+    <h1 style="margin:clamp(22px,3vw,34px) 0 0; font:800 clamp(52px,10vw,128px)/0.9 'Geist',sans-serif; letter-spacing:-.045em; color:#eef3ef">
+      <span data-reveal style="display:block">Dean</span>
+      <span data-reveal data-rd="1" style="display:block; color:#8d968c; font-weight:300">van Niekerk</span>
+    </h1>
+
+    <div data-reveal data-rd="2" style="margin-top:clamp(22px,3vw,34px); font:500 clamp(13px,1.5vw,16px)/1.5 'JetBrains Mono',monospace; color:#a7b1a7">
+      Senior Engineer @ <a href="https://edge.trade" target="_blank" rel="noopener noreferrer" style="color:#40ce7e; border-bottom:1px solid rgba(64,206,126,.4)">Edge</a> · Real-Time Trading · Full Stack
+    </div>
+
+    <div data-reveal data-rd="3" style="display:flex; gap:clamp(24px,4vw,52px); margin-top:clamp(36px,5vw,56px); align-items:flex-start; flex-wrap:wrap">
+      <div data-parallax="0.05" style="position:relative; flex-shrink:0; will-change:transform">
+        <div style="position:absolute; inset:-10px; border-radius:50%; background:radial-gradient(circle, rgba(64,206,126,.28), transparent 70%); filter:blur(6px)"></div>
+        <img src="assets/avatar.jpeg" alt="Dean van Niekerk" style="position:relative; width:clamp(92px,10vw,120px); height:clamp(92px,10vw,120px); border-radius:50%; object-fit:cover; border:1px solid rgba(64,206,126,.35)">
+      </div>
+      <p style="max-width:600px; margin:0; font:400 clamp(16px,1.9vw,20px)/1.65 'Geist',sans-serif; color:#8d968c">
+        10+ years building production fintech, crypto, Web3, and mobile products. I take product areas from architecture to launch — real-time data systems, trading interfaces, SQL-backed flows, APIs, performant frontends, and the delivery habits needed to ship well.
+      </p>
+    </div>
+
+    <div data-reveal data-rd="4" style="display:flex; gap:14px; margin-top:clamp(36px,5vw,52px); flex-wrap:wrap">
+      <a href="#projects" style="display:inline-flex; align-items:center; gap:8px; font:600 12px/1 'JetBrains Mono',monospace; letter-spacing:.08em; text-transform:uppercase; background:#40ce7e; color:#04140b; padding:16px 26px; border-radius:2px; transition:transform .25s, box-shadow .25s; box-shadow:0 10px 34px -10px rgba(64,206,126,.6)" onMouseEnter="{{ btnUp }}" onMouseLeave="{{ btnDown }}">View Projects →</a>
+      <a href="#connect" style="display:inline-flex; align-items:center; gap:8px; font:600 12px/1 'JetBrains Mono',monospace; letter-spacing:.08em; text-transform:uppercase; color:#c0c9c0; border:1px solid rgba(235,242,236,.18); padding:16px 26px; border-radius:2px; transition:transform .25s, border-color .25s, color .25s" onMouseEnter="{{ ghostHover }}" onMouseLeave="{{ ghostLeave }}">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section id="skills" style="position:relative; z-index:2; max-width:1240px; margin:0 auto; padding:clamp(58px,9vh,108px) clamp(20px,5vw,72px); border-top:1px solid rgba(235,242,236,.07)">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:18px; margin-bottom:clamp(34px,5vw,56px)">
+      <div>
+        <div data-reveal style="font:500 12px/1 'JetBrains Mono',monospace; letter-spacing:.24em; text-transform:uppercase; color:#40ce7e">01 — Core Stack</div>
+        <h2 data-reveal data-rd="1" style="margin:18px 0 0; font:800 clamp(34px,5.5vw,60px)/1 'Geist',sans-serif; letter-spacing:-.03em; color:#eef3ef">Technologies</h2>
+      </div>
+      <p data-reveal data-rd="2" style="max-width:380px; margin:0; font:400 15px/1.65 'Geist',sans-serif; color:#838c82">The stack I reach for to take product areas from architecture all the way to launch.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:rgba(235,242,236,.08); border:1px solid rgba(235,242,236,.08); border-radius:3px; overflow:hidden">
+      <div data-reveal style="background:#0e120f; padding:clamp(20px,3vw,30px)">
+        <div style="font:600 clamp(17px,2.1vw,22px)/1 'Geist',sans-serif; color:#e9efe9">TypeScript</div>
+        <div style="margin-top:12px; font:400 12px/1 'JetBrains Mono',monospace; color:#7f877d; letter-spacing:.03em">Expert · Product-scale apps</div>
+        <div style="margin-top:18px; height:2px; background:rgba(235,242,236,.1)"><div style="width:95%; height:100%; background:#40ce7e"></div></div>
+      </div>
+      <div data-reveal data-rd="1" style="background:#0e120f; padding:clamp(20px,3vw,30px)">
+        <div style="font:600 clamp(17px,2.1vw,22px)/1 'Geist',sans-serif; color:#e9efe9">React</div>
+        <div style="margin-top:12px; font:400 12px/1 'JetBrains Mono',monospace; color:#7f877d; letter-spacing:.03em">Expert · Complex interfaces</div>
+        <div style="margin-top:18px; height:2px; background:rgba(235,242,236,.1)"><div style="width:95%; height:100%; background:#40ce7e"></div></div>
+      </div>
+      <div data-reveal style="background:#0e120f; padding:clamp(20px,3vw,30px)">
+        <div style="font:600 clamp(17px,2.1vw,22px)/1 'Geist',sans-serif; color:#e9efe9">Node.js</div>
+        <div style="margin-top:12px; font:400 12px/1 'JetBrains Mono',monospace; color:#7f877d; letter-spacing:.03em">Expert · APIs &amp; services</div>
+        <div style="margin-top:18px; height:2px; background:rgba(235,242,236,.1)"><div style="width:92%; height:100%; background:#40ce7e"></div></div>
+      </div>
+      <div data-reveal data-rd="1" style="background:#0e120f; padding:clamp(20px,3vw,30px)">
+        <div style="font:600 clamp(17px,2.1vw,22px)/1 'Geist',sans-serif; color:#e9efe9">PostgreSQL</div>
+        <div style="margin-top:12px; font:400 12px/1 'JetBrains Mono',monospace; color:#7f877d; letter-spacing:.03em">Advanced · SQL-backed flows</div>
+        <div style="margin-top:18px; height:2px; background:rgba(235,242,236,.1)"><div style="width:88%; height:100%; background:#40ce7e"></div></div>
+      </div>
+      <div data-reveal style="background:#0e120f; padding:clamp(20px,3vw,30px)">
+        <div style="font:600 clamp(17px,2.1vw,22px)/1 'Geist',sans-serif; color:#e9efe9">Realtime Data</div>
+        <div style="margin-top:12px; font:400 12px/1 'JetBrains Mono',monospace; color:#7f877d; letter-spacing:.03em">RisingWave · Kafka · protobuf</div>
+        <div style="margin-top:18px; height:2px; background:rgba(235,242,236,.1)"><div style="width:86%; height:100%; background:#40ce7e"></div></div>
+      </div>
+      <div data-reveal data-rd="1" style="background:#0e120f; padding:clamp(20px,3vw,30px)">
+        <div style="font:600 clamp(17px,2.1vw,22px)/1 'Geist',sans-serif; color:#e9efe9">APIs</div>
+        <div style="margin-top:12px; font:400 12px/1 'JetBrains Mono',monospace; color:#7f877d; letter-spacing:.03em">tRPC · Express · schemas</div>
+        <div style="margin-top:18px; height:2px; background:rgba(235,242,236,.1)"><div style="width:90%; height:100%; background:#40ce7e"></div></div>
+      </div>
+      <div data-reveal style="background:#0e120f; padding:clamp(20px,3vw,30px)">
+        <div style="font:600 clamp(17px,2.1vw,22px)/1 'Geist',sans-serif; color:#e9efe9">Web3</div>
+        <div style="margin-top:12px; font:400 12px/1 'JetBrains Mono',monospace; color:#7f877d; letter-spacing:.03em">Viem · Solidity · 0x</div>
+        <div style="margin-top:18px; height:2px; background:rgba(235,242,236,.1)"><div style="width:90%; height:100%; background:#40ce7e"></div></div>
+      </div>
+      <div data-reveal data-rd="1" style="background:#0e120f; padding:clamp(20px,3vw,30px)">
+        <div style="font:600 clamp(17px,2.1vw,22px)/1 'Geist',sans-serif; color:#e9efe9">Delivery</div>
+        <div style="margin-top:12px; font:400 12px/1 'JetBrains Mono',monospace; color:#7f877d; letter-spacing:.03em">Docker · CI · testing</div>
+        <div style="margin-top:18px; height:2px; background:rgba(235,242,236,.1)"><div style="width:84%; height:100%; background:#40ce7e"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AI WORKFLOW ============ -->
+  <section id="ai-workflow" style="position:relative; z-index:2; max-width:1240px; margin:0 auto; padding:clamp(58px,9vh,108px) clamp(20px,5vw,72px); border-top:1px solid rgba(235,242,236,.07)">
+    <div data-reveal style="font:500 12px/1 'JetBrains Mono',monospace; letter-spacing:.24em; text-transform:uppercase; color:#40ce7e">02 — AI Workflow</div>
+    <div style="display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(28px,5vw,64px); margin-top:clamp(28px,4vw,44px); align-items:center">
+      <div>
+        <h2 data-reveal data-rd="1" style="margin:0; font:800 clamp(30px,4.4vw,52px)/1.02 'Geist',sans-serif; letter-spacing:-.03em; color:#eef3ef">AI as leverage,<br>not autopilot.</h2>
+        <p data-reveal data-rd="2" style="margin:clamp(20px,3vw,28px) 0 0; max-width:560px; font:400 clamp(15px,1.7vw,18px)/1.7 'Geist',sans-serif; color:#8d968c">I treat AI as a serious development tool: something that expands my reach, speeds up exploration, and helps me fill knowledge gaps without replacing the craft of engineering.</p>
+      </div>
+      <div data-reveal data-rd="2" style="border:1px solid rgba(235,242,236,.1); border-radius:8px; overflow:hidden; background:#0b0f0c">
+        <div style="display:flex; gap:7px; padding:13px 16px; border-bottom:1px solid rgba(235,242,236,.07)">
+          <span style="width:10px; height:10px; border-radius:50%; background:#232a25"></span><span style="width:10px; height:10px; border-radius:50%; background:#232a25"></span><span style="width:10px; height:10px; border-radius:50%; background:#232a25"></span>
+        </div>
+        <div style="padding:22px 24px 26px; font-family:'JetBrains Mono',monospace">
+          <div style="display:flex; gap:10px; font:500 13px/1.5 'JetBrains Mono',monospace; color:#c0c9c0"><span style="color:#40ce7e">&gt;</span><span>current_toolchain</span></div>
+          <div style="display:flex; flex-direction:column; gap:9px; margin-top:16px">
+            <span style="font:500 13px/1 'JetBrains Mono',monospace; color:#40ce7e; background:rgba(64,206,126,.09); border:1px solid rgba(64,206,126,.22); padding:9px 13px; border-radius:3px; align-self:flex-start">Codex + GPT-5.5</span>
+            <span style="font:500 13px/1 'JetBrains Mono',monospace; color:#40ce7e; background:rgba(64,206,126,.09); border:1px solid rgba(64,206,126,.22); padding:9px 13px; border-radius:3px; align-self:flex-start">Cursor</span>
+          </div>
+          <div style="margin-top:18px; font:400 12px/1.6 'JetBrains Mono',monospace; color:#5e655c">Guided by taste, review, and an engineer still doing the thinking.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(16px,2.5vw,30px); margin-top:clamp(40px,6vw,72px)">
+      <article data-reveal style="border-top:1px solid rgba(64,206,126,.3); padding-top:22px">
+        <div style="font:600 13px/1 'JetBrains Mono',monospace; color:#40ce7e">01</div>
+        <h3 style="margin:16px 0 0; font:700 clamp(18px,2vw,22px)/1.2 'Geist',sans-serif; color:#e9efe9">Joy, back in the loop</h3>
+        <p style="margin:12px 0 0; font:400 14px/1.65 'Geist',sans-serif; color:#838c82">AI has made coding feel playful and exploratory again. It lowers the friction between an idea and a working prototype, which keeps momentum high.</p>
+      </article>
+      <article data-reveal data-rd="1" style="border-top:1px solid rgba(64,206,126,.3); padding-top:22px">
+        <div style="font:600 13px/1 'JetBrains Mono',monospace; color:#40ce7e">02</div>
+        <h3 style="margin:16px 0 0; font:700 clamp(18px,2vw,22px)/1.2 'Geist',sans-serif; color:#e9efe9">More shipped per session</h3>
+        <p style="margin:12px 0 0; font:400 14px/1.65 'Geist',sans-serif; color:#838c82">I use it to move faster through scaffolding, refactors, test cases, debugging paths, and the repetitive edges that usually slow product work down.</p>
+      </article>
+      <article data-reveal data-rd="2" style="border-top:1px solid rgba(64,206,126,.3); padding-top:22px">
+        <div style="font:600 13px/1 'JetBrains Mono',monospace; color:#40ce7e">03</div>
+        <h3 style="margin:16px 0 0; font:700 clamp(18px,2vw,22px)/1.2 'Geist',sans-serif; color:#e9efe9">Gaps close faster</h3>
+        <p style="margin:12px 0 0; font:400 14px/1.65 'Geist',sans-serif; color:#838c82">When I hit an unfamiliar API, pattern, or domain, AI gives me a map. I still do the reading, but I get to understanding much quicker.</p>
+      </article>
+    </div>
+
+    <div data-reveal style="display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(24px,4vw,52px); margin-top:clamp(40px,6vw,72px); padding:clamp(28px,4vw,40px); background:rgba(235,242,236,.03); border:1px solid rgba(235,242,236,.08); border-radius:10px; align-items:start">
+      <div>
+        <div style="font:500 11px/1 'JetBrains Mono',monospace; letter-spacing:.2em; text-transform:uppercase; color:#40ce7e">The guardrails</div>
+        <h3 style="margin:16px 0 0; font:700 clamp(20px,2.4vw,28px)/1.15 'Geist',sans-serif; color:#e9efe9">Keeping the coding edge sharp</h3>
+      </div>
+      <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px">
+        <li style="display:flex; gap:14px; font:400 clamp(14px,1.6vw,16px)/1.5 'Geist',sans-serif; color:#c0c9c0"><span style="color:#40ce7e; font-family:'JetBrains Mono',monospace; flex-shrink:0">01</span>Read every meaningful line before it lands.</li>
+        <li style="display:flex; gap:14px; font:400 clamp(14px,1.6vw,16px)/1.5 'Geist',sans-serif; color:#c0c9c0"><span style="color:#40ce7e; font-family:'JetBrains Mono',monospace; flex-shrink:0">02</span>Understand the tradeoffs, not just the diff.</li>
+        <li style="display:flex; gap:14px; font:400 clamp(14px,1.6vw,16px)/1.5 'Geist',sans-serif; color:#c0c9c0"><span style="color:#40ce7e; font-family:'JetBrains Mono',monospace; flex-shrink:0">03</span>Use AI to reason through problems, not outsource judgment.</li>
+        <li style="display:flex; gap:14px; font:400 clamp(14px,1.6vw,16px)/1.5 'Geist',sans-serif; color:#c0c9c0"><span style="color:#40ce7e; font-family:'JetBrains Mono',monospace; flex-shrink:0">04</span>Keep fundamentals sharp by explaining the solution back to myself.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects" style="position:relative; z-index:2; max-width:1240px; margin:0 auto; padding:clamp(58px,9vh,108px) clamp(20px,5vw,72px); border-top:1px solid rgba(235,242,236,.07)">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:clamp(40px,6vw,72px)">
+      <div>
+        <div data-reveal style="font:500 12px/1 'JetBrains Mono',monospace; letter-spacing:.24em; text-transform:uppercase; color:#40ce7e">03 — Selected Work</div>
+        <h2 data-reveal data-rd="1" style="margin:18px 0 0; font:800 clamp(34px,5.5vw,60px)/1 'Geist',sans-serif; letter-spacing:-.03em; color:#eef3ef">Projects</h2>
+      </div>
+      <div data-reveal data-rd="2" style="font:500 12px/1 'JetBrains Mono',monospace; color:#5e655c">01 — 04</div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:clamp(56px,9vw,120px)">
+
+      <!-- 01 EDGE (image left) -->
+      <div data-reveal style="display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(28px,5vw,60px); align-items:center">
+        <div data-parallax="0.02" style="position:relative; border:1px solid rgba(235,242,236,.1); border-radius:12px; overflow:hidden; background:#080b08; box-shadow:0 34px 70px -34px rgba(0,0,0,.7)">
+          <div style="display:flex; gap:6px; padding:11px 15px; border-bottom:1px solid rgba(235,242,236,.06)">
+            <span style="width:9px; height:9px; border-radius:50%; background:#232a25"></span><span style="width:9px; height:9px; border-radius:50%; background:#232a25"></span><span style="width:9px; height:9px; border-radius:50%; background:#232a25"></span>
+          </div>
+          <img src="assets/edge/screenshot-1.png" alt="Edge trading platform" style="display:block; width:100%; height:clamp(220px,28vw,330px); object-fit:cover; object-position:top left">
+        </div>
+        <div>
+          <div style="font:500 11px/1 'JetBrains Mono',monospace; letter-spacing:.2em; text-transform:uppercase; color:#40ce7e">01 / Featured</div>
+          <h3 style="margin:16px 0 0; font:700 clamp(26px,3.6vw,42px)/1.04 'Geist',sans-serif; letter-spacing:-.025em; color:#eef3ef">Edge Trading Platform</h3>
+          <p style="margin:16px 0 0; max-width:520px; font:400 clamp(14px,1.6vw,16px)/1.65 'Geist',sans-serif; color:#838c82">Built key frontend, API, and realtime data surfaces for a live crypto trading platform — discovery feeds, TradingView charts, order-book updates, portfolio views, and quick-trade flows.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:20px">
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">TypeScript</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">React</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">Node.js</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">Kafka</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">RisingWave</span>
+          </div>
+          <button onClick="{{ open0 }}" style="margin-top:26px; display:inline-flex; align-items:center; gap:9px; font:600 12px/1 'JetBrains Mono',monospace; letter-spacing:.06em; text-transform:uppercase; color:#04140b; background:#40ce7e; border:none; padding:14px 22px; border-radius:2px; cursor:pointer; transition:transform .25s, box-shadow .25s" onMouseEnter="{{ btnUp }}" onMouseLeave="{{ btnDown }}">View details →</button>
+        </div>
+      </div>
+
+      <!-- 02 K53 (image right) -->
+      <div data-reveal style="display:grid; grid-template-columns:.95fr 1.05fr; gap:clamp(28px,5vw,60px); align-items:center">
+        <div style="order:2">
+          <div data-parallax="0.02" style="position:relative; border:1px solid rgba(235,242,236,.1); border-radius:12px; overflow:hidden; background:#10152e; box-shadow:0 34px 70px -34px rgba(0,0,0,.7)">
+            <img src="assets/k53/banner.webp" alt="K53 Study Guide" style="display:block; width:100%; height:clamp(220px,28vw,330px); object-fit:cover; object-position:center left">
+          </div>
+        </div>
+        <div style="order:1">
+          <div style="font:500 11px/1 'JetBrains Mono',monospace; letter-spacing:.2em; text-transform:uppercase; color:#40ce7e">02 / Personal</div>
+          <h3 style="margin:16px 0 0; font:700 clamp(26px,3.6vw,42px)/1.04 'Geist',sans-serif; letter-spacing:-.025em; color:#eef3ef">K53 Study Guide</h3>
+          <p style="margin:16px 0 0; max-width:520px; font:400 clamp(14px,1.6vw,16px)/1.65 'Geist',sans-serif; color:#838c82">Built and maintained a production Android app end-to-end: React/Ionic mobile UI, native Capacitor integrations, premium unlocks, Firebase analytics, Crashlytics, SEO/ASO, and Play Store compliance. 100K+ downloads, 4.6★ rating.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:20px">
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">Mobile</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">TypeScript</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">Ionic</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">Capacitor</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">Firebase</span>
+          </div>
+          <button onClick="{{ open1 }}" style="margin-top:26px; display:inline-flex; align-items:center; gap:9px; font:600 12px/1 'JetBrains Mono',monospace; letter-spacing:.06em; text-transform:uppercase; color:#04140b; background:#40ce7e; border:none; padding:14px 22px; border-radius:2px; cursor:pointer; transition:transform .25s, box-shadow .25s" onMouseEnter="{{ btnUp }}" onMouseLeave="{{ btnDown }}">View details →</button>
+        </div>
+      </div>
+
+      <!-- 03 ASPEN (image left) -->
+      <div data-reveal style="display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(28px,5vw,60px); align-items:center">
+        <div data-parallax="0.02" style="position:relative; border:1px solid rgba(235,242,236,.1); border-radius:12px; overflow:hidden; background:#0a0510; box-shadow:0 34px 70px -34px rgba(0,0,0,.7)">
+          <img src="assets/aspen/banner.svg" alt="Aspen NFT platform" style="display:block; width:100%; height:clamp(220px,28vw,330px); object-fit:cover; object-position:center">
+        </div>
+        <div>
+          <div style="font:500 11px/1 'JetBrains Mono',monospace; letter-spacing:.2em; text-transform:uppercase; color:#40ce7e">03 / Web3</div>
+          <h3 style="margin:16px 0 0; font:700 clamp(26px,3.6vw,42px)/1.04 'Geist',sans-serif; letter-spacing:-.025em; color:#eef3ef">Aspen NFT Platform</h3>
+          <p style="margin:16px 0 0; max-width:520px; font:400 clamp(14px,1.6vw,16px)/1.65 'Geist',sans-serif; color:#838c82">Led engineering on a Web3 membership platform for NFT minting, trading, and white-label creator storefronts. Architected core product flows, decentralised order-book mechanics, and 0x-based smart contracts.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:20px">
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">TypeScript</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">Viem</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">Solidity</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">0x Protocol</span>
+          </div>
+          <button onClick="{{ open2 }}" style="margin-top:26px; display:inline-flex; align-items:center; gap:9px; font:600 12px/1 'JetBrains Mono',monospace; letter-spacing:.06em; text-transform:uppercase; color:#04140b; background:#40ce7e; border:none; padding:14px 22px; border-radius:2px; cursor:pointer; transition:transform .25s, box-shadow .25s" onMouseEnter="{{ btnUp }}" onMouseLeave="{{ btnDown }}">View details →</button>
+        </div>
+      </div>
+
+      <!-- 04 KURTOSYS (image right) -->
+      <div data-reveal style="display:grid; grid-template-columns:.95fr 1.05fr; gap:clamp(28px,5vw,60px); align-items:center">
+        <div style="order:2">
+          <div data-parallax="0.02" style="position:relative; border:1px solid rgba(235,242,236,.1); border-radius:12px; overflow:hidden; background:#0e1a33; box-shadow:0 34px 70px -34px rgba(0,0,0,.7)">
+            <img src="assets/kurtosys/banner.png" alt="Kurtosys systems" style="display:block; width:100%; height:clamp(220px,28vw,330px); object-fit:contain; object-position:center; padding:24px">
+          </div>
+        </div>
+        <div style="order:1">
+          <div style="font:500 11px/1 'JetBrains Mono',monospace; letter-spacing:.2em; text-transform:uppercase; color:#40ce7e">04 / Fintech</div>
+          <h3 style="margin:16px 0 0; font:700 clamp(26px,3.6vw,42px)/1.04 'Geist',sans-serif; letter-spacing:-.025em; color:#eef3ef">Kurtosys Systems</h3>
+          <p style="margin:16px 0 0; max-width:520px; font:400 clamp(14px,1.6vw,16px)/1.65 'Geist',sans-serif; color:#838c82">Built full-stack fintech tooling for international asset managers including BMO, Federated Hermes, and Bank of America Merrill Lynch. Delivered database, backend, and frontend features end-to-end while mentoring engineers.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:20px">
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">TypeScript</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">React</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">C#</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">.NET</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#c0c9c0; background:rgba(235,242,236,.04); border:1px solid rgba(235,242,236,.12); padding:7px 11px; border-radius:3px">SQL</span>
+          </div>
+          <button onClick="{{ open3 }}" style="margin-top:26px; display:inline-flex; align-items:center; gap:9px; font:600 12px/1 'JetBrains Mono',monospace; letter-spacing:.06em; text-transform:uppercase; color:#04140b; background:#40ce7e; border:none; padding:14px 22px; border-radius:2px; cursor:pointer; transition:transform .25s, box-shadow .25s" onMouseEnter="{{ btnUp }}" onMouseLeave="{{ btnDown }}">View details →</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ ACTIVITY ============ -->
+  <section id="activity" style="position:relative; z-index:2; max-width:1240px; margin:0 auto; padding:clamp(58px,9vh,108px) clamp(20px,5vw,72px); border-top:1px solid rgba(235,242,236,.07)">
+    <div data-reveal style="font:500 12px/1 'JetBrains Mono',monospace; letter-spacing:.24em; text-transform:uppercase; color:#40ce7e">04 — Activity</div>
+    <h2 data-reveal data-rd="1" style="margin:18px 0 0; font:800 clamp(34px,5.5vw,60px)/1 'Geist',sans-serif; letter-spacing:-.03em; color:#eef3ef">GitHub Activity</h2>
+
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(16px,3vw,40px); margin-top:clamp(34px,5vw,56px)">
+      <div data-reveal style="border-top:1px solid rgba(64,206,126,.3); padding-top:20px">
+        <div style="font:800 clamp(38px,6vw,68px)/1 'Geist',sans-serif; color:#40ce7e; font-variant-numeric:tabular-nums; letter-spacing:-.02em">{{ commits }}</div>
+        <div style="margin-top:10px; font:500 11px/1 'JetBrains Mono',monospace; letter-spacing:.18em; text-transform:uppercase; color:#7f877d">Commits · last year</div>
+      </div>
+      <div data-reveal data-rd="1" style="border-top:1px solid rgba(64,206,126,.3); padding-top:20px">
+        <div style="font:800 clamp(38px,6vw,68px)/1 'Geist',sans-serif; color:#40ce7e; font-variant-numeric:tabular-nums; letter-spacing:-.02em">{{ years }}</div>
+        <div style="margin-top:10px; font:500 11px/1 'JetBrains Mono',monospace; letter-spacing:.18em; text-transform:uppercase; color:#7f877d">Years on GitHub</div>
+      </div>
+      <div data-reveal data-rd="2" style="border-top:1px solid rgba(64,206,126,.3); padding-top:20px">
+        <div style="font:800 clamp(38px,6vw,68px)/1 'Geist',sans-serif; color:#40ce7e; font-variant-numeric:tabular-nums; letter-spacing:-.02em">{{ followers }}</div>
+        <div style="margin-top:10px; font:500 11px/1 'JetBrains Mono',monospace; letter-spacing:.18em; text-transform:uppercase; color:#7f877d">Followers</div>
+      </div>
+    </div>
+
+    <div data-reveal style="margin-top:clamp(36px,5vw,56px); padding:clamp(18px,3vw,28px); background:rgba(235,242,236,.025); border:1px solid rgba(235,242,236,.08); border-radius:10px; overflow-x:auto">
+      <div style="display:flex; gap:3px; min-width:max-content">
+        <sc-for list="{{ weeks }}" as="wk" hint-placeholder-count="52">
+          <div style="display:flex; flex-direction:column; gap:3px">
+            <sc-for list="{{ wk }}" as="day" hint-placeholder-count="7">
+              <div style="width:13px; height:13px; border-radius:2px; background:{{ day.bg }}; box-shadow:{{ day.glow }}"></div>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px; margin-top:16px; font:400 11px/1 'JetBrains Mono',monospace; color:#5e655c">
+        <span>Less</span>
+        <div style="display:flex; gap:3px">
+          <div style="width:13px; height:13px; border-radius:2px; background:#18211b"></div>
+          <div style="width:13px; height:13px; border-radius:2px; background:rgba(64,206,126,.26)"></div>
+          <div style="width:13px; height:13px; border-radius:2px; background:rgba(64,206,126,.48)"></div>
+          <div style="width:13px; height:13px; border-radius:2px; background:rgba(64,206,126,.74)"></div>
+          <div style="width:13px; height:13px; border-radius:2px; background:#62e29a"></div>
+        </div>
+        <span>More</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONNECT ============ -->
+  <section id="connect" style="position:relative; z-index:2; max-width:1240px; margin:0 auto; padding:clamp(58px,9vh,108px) clamp(20px,5vw,72px); border-top:1px solid rgba(235,242,236,.07)">
+    <div data-reveal style="font:500 12px/1 'JetBrains Mono',monospace; letter-spacing:.24em; text-transform:uppercase; color:#40ce7e">05 — Get in touch</div>
+    <h2 data-reveal data-rd="1" style="margin:18px 0 0; font:800 clamp(34px,5.5vw,60px)/1 'Geist',sans-serif; letter-spacing:-.03em; color:#eef3ef">Connect</h2>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,52px); margin-top:clamp(34px,5vw,56px); align-items:start">
+      <div data-reveal style="display:flex; flex-direction:column">
+        <a href="mailto:dean@vanniekerk.online" style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 4px; border-bottom:1px solid rgba(235,242,236,.1); transition:padding-left .25s, border-color .25s" onMouseEnter="{{ linkHover }}" onMouseLeave="{{ linkLeave }}">
+          <span style="font:500 clamp(15px,1.9vw,19px)/1 'Geist',sans-serif; color:#e9efe9">dean@vanniekerk.online</span>
+          <span style="font:500 16px/1 'JetBrains Mono',monospace; color:#40ce7e">→</span>
+        </a>
+        <a href="https://www.linkedin.com/in/dean-van-niekerk" target="_blank" rel="noreferrer" style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 4px; border-bottom:1px solid rgba(235,242,236,.1); transition:padding-left .25s, border-color .25s" onMouseEnter="{{ linkHover }}" onMouseLeave="{{ linkLeave }}">
+          <span style="font:500 clamp(15px,1.9vw,19px)/1 'Geist',sans-serif; color:#e9efe9">LinkedIn</span>
+          <span style="font:500 16px/1 'JetBrains Mono',monospace; color:#40ce7e">→</span>
+        </a>
+        <a href="https://github.com/deanvanniekerk" target="_blank" rel="noreferrer" style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 4px; border-bottom:1px solid rgba(235,242,236,.1); transition:padding-left .25s, border-color .25s" onMouseEnter="{{ linkHover }}" onMouseLeave="{{ linkLeave }}">
+          <span style="font:500 clamp(15px,1.9vw,19px)/1 'Geist',sans-serif; color:#e9efe9">GitHub</span>
+          <span style="font:500 16px/1 'JetBrains Mono',monospace; color:#40ce7e">→</span>
+        </a>
+      </div>
+
+      <div data-reveal data-rd="1" style="position:relative; padding:clamp(28px,4vw,40px); background:radial-gradient(120% 90% at 100% 0%, rgba(64,206,126,.12), transparent 60%), rgba(235,242,236,.03); border:1px solid rgba(64,206,126,.2); border-radius:12px">
+        <div style="display:inline-flex; align-items:center; gap:9px; font:600 11px/1 'JetBrains Mono',monospace; letter-spacing:.18em; text-transform:uppercase; color:#40ce7e">
+          <span style="width:7px; height:7px; border-radius:50%; background:#40ce7e; box-shadow:0 0 10px #40ce7e; animation:dvnPulse 2.6s ease-in-out infinite"></span>Open to work
+        </div>
+        <p style="margin:18px 0 0; font:400 clamp(15px,1.7vw,17px)/1.7 'Geist',sans-serif; color:#c0c9c0">Open to senior or lead engineering roles where product ownership, high-performance TypeScript, realtime systems, fintech, crypto, or Web3 depth matter. I'm strongest where architecture, execution, and team momentum all need to meet.</p>
+        <a href="mailto:dean@vanniekerk.online" style="margin-top:26px; display:inline-flex; align-items:center; gap:8px; font:600 12px/1 'JetBrains Mono',monospace; letter-spacing:.08em; text-transform:uppercase; background:#40ce7e; color:#04140b; padding:15px 24px; border-radius:2px; box-shadow:0 10px 30px -10px rgba(64,206,126,.55); transition:transform .25s, box-shadow .25s" onMouseEnter="{{ btnUp }}" onMouseLeave="{{ btnDown }}">Send a message →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="position:relative; z-index:2; max-width:1240px; margin:0 auto; padding:clamp(28px,4vw,40px) clamp(20px,5vw,72px); border-top:1px solid rgba(235,242,236,.07); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px">
+    <div style="font:500 14px/1 'Geist',sans-serif; color:#8d968c">Dean van Niekerk&nbsp;·&nbsp;Senior Engineer</div>
+    <div style="font:400 12px/1 'JetBrains Mono',monospace; letter-spacing:.04em; color:#5e655c">// 2026 · Built with precision</div>
+  </footer>
+
+  <dc-import name="Project Modal" data="{{ activeProject }}" open="{{ modalOpen }}" on-close="{{ closeModal }}" hint-size="100%,100%"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    openIndex: null,
+    gh: { commits: 0, years: 0, followers: 0, weeks: [], loaded: false },
+    statsActive: false,
+    dc: 0, dy: 0, df: 0,
+  };
+
+  componentDidMount() {
+    this.buildFallbackGrid();
+    this.setupScroll();
+    this.fetchGitHub();
+    this._esc = (e) => { if (e.key === 'Escape') this.closeModal(); };
+    window.addEventListener('keydown', this._esc);
+  }
+  componentDidUpdate() { this.tick(); }
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this._esc);
+    if (this._onScroll) {
+      window.removeEventListener('scroll', this._onScroll);
+      window.removeEventListener('resize', this._onScroll);
+    }
+  }
+
+  /* ---- unified scroll: parallax + reveal + stat trigger (IO unreliable in this iframe) ---- */
+  setupScroll() {
+    if (this._bound) { this.tick(); return; }
+    this._bound = true;
+    let ticking = false;
+    this._apply = () => {
+      const vh = window.innerHeight;
+      document.querySelectorAll('[data-parallax]').forEach((el) => {
+        const sp = parseFloat(el.getAttribute('data-parallax')) || 0;
+        const r = el.getBoundingClientRect();
+        const off = (r.top + r.height / 2) - vh / 2;
+        el.style.transform = `translate3d(0, ${(-off * sp).toFixed(1)}px, 0)`;
+      });
+      document.querySelectorAll('[data-reveal]:not([data-shown])').forEach((el) => {
+        if (el._tw) return;
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.9 && r.bottom > -40) this.revealEl(el);
+      });
+      if (!this.state.statsActive) {
+        const a = document.getElementById('activity');
+        if (a) {
+          const r = a.getBoundingClientRect();
+          if (r.top < vh * 0.78 && r.bottom > 0) {
+            this.setState({ statsActive: true });
+            const g = this.state.gh;
+            this.runCounts(g.commits, g.years, g.followers);
+          }
+        }
+      }
+      ticking = false;
+    };
+    this._onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(this._apply); } };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    window.addEventListener('resize', this._onScroll, { passive: true });
+    this.tick();
+  }
+  tick() {
+    let n = 0;
+    const f = () => { if (this._apply) this._apply(); if (++n < 6) requestAnimationFrame(f); };
+    requestAnimationFrame(f);
+    [80, 240, 520, 900, 1400].forEach((ms) => setTimeout(() => { if (this._apply) this._apply(); }, ms));
+  }
+
+  /* JS rAF fade-up tween (CSS transition timeline is frozen in this preview) */
+  revealEl(el) {
+    if (el._tw) return;
+    el._tw = true;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.setAttribute('data-shown', '');
+      return;
+    }
+    const dur = 720;
+    const delay = (parseInt(el.getAttribute('data-rd') || '0', 10)) * 80;
+    const begin = performance.now() + delay;
+    const step = (now) => {
+      const t = Math.max(0, Math.min((now - begin) / dur, 1));
+      const e = 1 - Math.pow(1 - t, 3);
+      el.style.opacity = String(e);
+      el.style.transform = `translateY(${(30 * (1 - e)).toFixed(1)}px)`;
+      if (t < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.setAttribute('data-shown', '');
+        el.style.opacity = '';
+        el.style.transform = '';
+      }
+    };
+    requestAnimationFrame(step);
+  }
+
+  /* ---- github ---- */
+  buildFallbackGrid() {
+    const weeks = [];
+    let commits = 0;
+    for (let w = 0; w < 52; w++) {
+      const days = [];
+      for (let d = 0; d < 7; d++) {
+        const r = Math.random();
+        const lvl = r < 0.42 ? 0 : r < 0.68 ? 1 : r < 0.85 ? 2 : r < 0.95 ? 3 : 4;
+        if (lvl) commits += lvl * 2 + Math.floor(Math.random() * 4);
+        days.push({ level: lvl });
+      }
+      weeks.push(days);
+    }
+    const years = new Date().getFullYear() - 2014;
+    this.setState({ gh: { commits, years, followers: 28, weeks, loaded: true } });
+  }
+
+  async fetchGitHub() {
+    try {
+      const u = 'deanvanniekerk';
+      const ty = new Date().getFullYear(), ly = ty - 1;
+      const today = new Date().toISOString().slice(0, 10);
+      const [profile, a, b] = await Promise.all([
+        fetch(`https://api.github.com/users/${u}`).then((r) => r.json()),
+        fetch(`https://github-contributions-api.jogruber.de/v4/${u}?y=${ly}`).then((r) => r.json()),
+        fetch(`https://github-contributions-api.jogruber.de/v4/${u}?y=${ty}`).then((r) => r.json()),
+      ]);
+      const contribs = [...(a.contributions || []), ...(b.contributions || [])]
+        .filter((d) => d.date <= today)
+        .sort((x, y) => x.date.localeCompare(y.date))
+        .slice(-364);
+      if (!contribs.length) return;
+      const weeks = [];
+      for (let w = 0; w < 52; w++) weeks.push(contribs.slice(w * 7, w * 7 + 7).map((d) => ({ level: d.level })));
+      const commits = contribs.reduce((s, d) => s + (d.count || 0), 0);
+      const years = new Date().getFullYear() - new Date(profile.created_at).getFullYear();
+      const followers = profile.followers ?? 0;
+      this.setState({ gh: { commits, years, followers, weeks, loaded: true } });
+      if (this.state.statsActive) this.runCounts(commits, years, followers);
+    } catch (e) { /* keep fallback */ }
+  }
+
+  runCounts(c, y, f) {
+    this.countTo('dc', c, 1700);
+    this.countTo('dy', y, 1100);
+    this.countTo('df', f, 1400);
+  }
+  countTo(field, target, dur) {
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min((now - start) / dur, 1);
+      const e = 1 - Math.pow(1 - t, 3);
+      this.setState({ [field]: Math.floor(e * target) });
+      if (t < 1) requestAnimationFrame(tick); else this.setState({ [field]: target });
+    };
+    requestAnimationFrame(tick);
+  }
+
+  /* ---- modal ---- */
+  openProject(i) { this.setState({ openIndex: i }); document.body.style.overflow = 'hidden'; }
+  closeModal() { this.setState({ openIndex: null }); document.body.style.overflow = ''; }
+
+  /* ---- hover helpers ---- */
+  navHover = (e) => { e.currentTarget.style.color = '#e9efe9'; };
+  navLeave = (e) => { e.currentTarget.style.color = '#8d968c'; };
+  btnUp = (e) => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 16px 42px -10px rgba(64,206,126,.75)'; };
+  btnDown = (e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 10px 34px -10px rgba(64,206,126,.6)'; };
+  ghostHover = (e) => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.borderColor = 'rgba(64,206,126,.5)'; e.currentTarget.style.color = '#e9efe9'; };
+  ghostLeave = (e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.borderColor = 'rgba(235,242,236,.18)'; e.currentTarget.style.color = '#c0c9c0'; };
+  linkHover = (e) => { e.currentTarget.style.paddingLeft = '16px'; e.currentTarget.style.borderColor = 'rgba(64,206,126,.5)'; };
+  linkLeave = (e) => { e.currentTarget.style.paddingLeft = '4px'; e.currentTarget.style.borderColor = 'rgba(235,242,236,.1)'; };
+
+  colorFor(level) {
+    return ['#18211b', 'rgba(64,206,126,.26)', 'rgba(64,206,126,.48)', 'rgba(64,206,126,.74)', '#62e29a'][level] || '#18211b';
+  }
+
+  PROJECTS = [
+    {
+      num: '01 / Featured', title: 'Edge Trading Platform',
+      meta: 'Senior Engineer · Oct 2024 – Present · Remote',
+      desc: 'A crypto trading startup building realtime trading, discovery, wallet, and alerting tools. I work across the TypeScript monorepo: React/Vite interfaces, API services, SQL migrations, shared schemas, realtime subscriptions, and trading UX.',
+      highlights: [
+        'Delivered key frontend and API surfaces for the Edge beta launch.',
+        'Integrated the TradingView chart widget with a TimescaleDB-backed OHLC API for low-latency candlestick data.',
+        'Implemented realtime discovery and trending-pairs flows across SQL/RisingWave views, Kafka/protobuf messages, API routers, and subscription consumers.',
+        'Optimised high-frequency trading interfaces: feed filters, tracked-wallet views, holdings tables, and charting paths.',
+        'Built responsive scanner and discovery experiences with presets, wallet/watchlist source filtering, and quick-trade actions.',
+        'Collaborated with a small cross-functional international team.',
+      ],
+      tags: ['TypeScript', 'React', 'Node.js', 'PostgreSQL', 'TimescaleDB', 'RisingWave', 'Kafka'],
+      shots: [
+        { src: 'assets/edge/screenshot-1.png', label: 'Trading Chart' },
+        { src: 'assets/edge/screenshot-2.png', label: 'Scanner / Discovery' },
+        { src: 'assets/edge/screenshot-3.png', label: 'Portfolio' },
+      ],
+      banner: null,
+      stats: [
+        { label: 'Status', value: 'Live' },
+        { label: 'Role', value: 'Senior Engineer' },
+        { label: 'Since', value: 'Oct 2024' },
+        { label: 'Type', value: 'Full-time · Remote' },
+      ],
+      links: [
+        { name: 'edge.trade', sub: 'Open the live platform', url: 'https://edge.trade', primary: true },
+        { name: '@EdgeTrade', sub: 'Follow on X for updates', url: 'https://x.com/EdgeTrade', primary: false },
+      ],
+    },
+    {
+      num: '02 / Personal Project', title: 'K53 Study Guide',
+      meta: 'Solo Project · Android · 2018 – Present',
+      desc: 'Independent production mobile product that I built and operated end-to-end: app architecture, mobile UI, native integrations, analytics, monetisation, landing-page SEO, Play Store compliance, and ongoing release maintenance.',
+      highlights: [
+        'Built the app solo with React, Ionic, Capacitor, TypeScript, Redux, Vite, and native Android/iOS integrations.',
+        'Implemented the study, quiz, progress, profile, and dynamically generated mock-test flows.',
+        'Added full-funnel Firebase/GA4 analytics covering landing-page handoff, engagement, premium prompts, checkout, and purchase outcomes.',
+        'Implemented one-time premium unlocks, app-rating prompts, Crashlytics, and Play Store compliance updates.',
+        'Converted the project into a pnpm monorepo with dedicated app and landing-page packages.',
+        'Maintained a production mobile product with 100K+ downloads and a 4.6★ Play Store rating.',
+      ],
+      tags: ['Mobile', 'TypeScript', 'Ionic', 'Capacitor', 'Firebase'],
+      shots: [
+        { src: 'assets/k53/screen-study-home.webp', label: 'Study home' },
+        { src: 'assets/k53/screen-quiz-question.webp', label: 'Quiz question' },
+        { src: 'assets/k53/screen-test-question.webp', label: 'Mock test' },
+        { src: 'assets/k53/screen-profile.webp', label: 'Profile' },
+      ],
+      banner: null,
+      stats: [
+        { label: 'Downloads', value: '100K+' },
+        { label: 'Rating', value: '4.6 ★' },
+        { label: 'Reviews', value: '418' },
+        { label: 'Platform', value: 'Android' },
+      ],
+      links: [
+        { name: 'Google Play', sub: 'View listing', url: 'https://play.google.com/store/apps/details?id=deanvniekerk.k53studyguide.app', primary: true },
+        { name: 'k53studyguide.online', sub: 'Official website', url: 'https://k53studyguide.online/', primary: false },
+      ],
+    },
+    {
+      num: '03 / Web3', title: 'Aspen NFT Platform',
+      meta: 'Team Lead · Senior Engineer · Jun 2020 – Oct 2024 · Remote',
+      desc: 'Aspen is a Web3 membership platform for NFT minting, trading, membership management, and white-label creator storefronts. As engineering team lead at Monax Labs I architected core product flows, decentralised order-book mechanics, and 0x-based smart contract infrastructure.',
+      highlights: [
+        'Led engineering delivery across NFT trading, minting, membership management, and creator storefront tooling.',
+        'Deployed and maintained custom 0x smart contracts to facilitate decentralised NFT swaps.',
+        'Developed a decentralised order book with pre-signed orders.',
+        'Engineered the NFT Storefronts feature — white-label storefronts with custom branding and minting.',
+        'Mentored engineers, reviewed code, and kept technical execution aligned with product goals.',
+      ],
+      tags: ['TypeScript', 'React', 'Node.js', 'Viem', 'Solidity', '0x Protocol'],
+      shots: null,
+      banner: 'assets/aspen/banner.svg',
+      stats: [
+        { label: 'Role', value: 'Team Lead · Sr Engineer' },
+        { label: 'Company', value: 'Monax Labs' },
+        { label: 'Period', value: 'Jun 2020 – Oct 2024' },
+        { label: 'Type', value: 'Full-time · Remote' },
+      ],
+      links: [
+        { name: 'Aspen posts', sub: 'LinkedIn articles', url: 'https://www.linkedin.com/showcase/aspenft/posts/?feedView=articles', primary: true },
+      ],
+    },
+    {
+      num: '04 / Fintech', title: 'Kurtosys Systems',
+      meta: 'Senior Engineer · Oct 2018 – Jun 2020 · Cape Town',
+      desc: 'Full-stack engineer building fintech tooling for international asset managers. Clients included BMO, Federated Hermes, and Bank of America Merrill Lynch. Responsible for delivering database, backend, and frontend features end-to-end in a regulated financial-services environment.',
+      highlights: [
+        'Built tools used by top-tier international asset managers: BMO, Federated Hermes, and Bank of America Merrill Lynch.',
+        'Helped architect and deliver new application capabilities in a regulated fintech environment.',
+        'Implemented features end-to-end — database migrations through to the frontend.',
+        'Mentored junior developers and conducted code reviews to uphold best practices.',
+      ],
+      tags: ['TypeScript', 'React', 'C#', '.NET', 'PostgreSQL', 'SQL'],
+      shots: null,
+      banner: 'assets/kurtosys/banner.png',
+      stats: [
+        { label: 'Role', value: 'Senior Engineer' },
+        { label: 'Company', value: 'Kurtosys Systems' },
+        { label: 'Period', value: 'Oct 2018 – Jun 2020' },
+        { label: 'Clients', value: 'BMO · Hermes · BoA' },
+      ],
+      links: [
+        { name: 'kurtosys.com', sub: 'Company website', url: 'https://kurtosys.com', primary: true },
+      ],
+    },
+  ];
+
+  renderVals() {
+    const g = this.state.gh;
+    const ap = this.state.openIndex == null ? null : this.PROJECTS[this.state.openIndex];
+    const weeks = (g.weeks || []).map((wk) => wk.map((d) => ({
+      bg: this.colorFor(d.level),
+      glow: d.level > 2 ? `0 0 5px ${this.colorFor(d.level)}` : 'none',
+    })));
+    return {
+      navHover: this.navHover, navLeave: this.navLeave,
+      btnUp: this.btnUp, btnDown: this.btnDown,
+      ghostHover: this.ghostHover, ghostLeave: this.ghostLeave,
+      linkHover: this.linkHover, linkLeave: this.linkLeave,
+      activeProject: ap, modalOpen: this.state.openIndex != null,
+      open0: () => this.openProject(0),
+      open1: () => this.openProject(1),
+      open2: () => this.openProject(2),
+      open3: () => this.openProject(3),
+      closeModal: () => this.closeModal(),
+      weeks,
+      commits: this.state.dc.toLocaleString(),
+      years: String(this.state.dy),
+      followers: String(this.state.df),
+    };
+  }
+}
+</script>
+</body>
+</html>

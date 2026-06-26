@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="title desc">
+  <title id="title">Aspen logo</title>
+  <desc id="desc">Angular Aspen mark in orange, red, and purple on a dark background.</desc>
+  <defs>
+    <linearGradient id="top" x1="64" x2="134" y1="80" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#e24d33"></stop>
+      <stop offset="100%" stop-color="#f37433"></stop>
+    </linearGradient>
+    <linearGradient id="mid" x1="52" x2="132" y1="118" y2="78" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#a92758"></stop>
+      <stop offset="100%" stop-color="#d24d3c"></stop>
+    </linearGradient>
+    <linearGradient id="base" x1="46" x2="132" y1="154" y2="116" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7231e8"></stop>
+      <stop offset="100%" stop-color="#902fe9"></stop>
+    </linearGradient>
+    <radialGradient id="bg" cx="42%" cy="54%" r="62%">
+      <stop offset="0%" stop-color="#211037"></stop>
+      <stop offset="100%" stop-color="#07030e"></stop>
+    </radialGradient>
+  </defs>
+  <rect width="200" height="200" fill="url(#bg)"></rect>
+  <path d="M132 34 67 82h65Z" fill="url(#top)"></path>
+  <path d="M132 82 54 118h78Z" fill="url(#mid)"></path>
+  <path d="M132 118 46 153h86Z" fill="url(#base)"></path>
+</svg>

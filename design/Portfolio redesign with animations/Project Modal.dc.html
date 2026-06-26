@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ closeOverlay }}" style="position:fixed; inset:0; z-index:1000; display:flex; align-items:center; justify-content:center; padding:clamp(12px,3vw,40px); background:rgba(8,6,3,.78); backdrop-filter:blur(8px)">
+  <div onClick="{{ stop }}" style="position:relative; width:100%; max-width:1080px; max-height:92vh; overflow:auto; background:#10140f; border:1px solid rgba(235,242,236,.12); border-radius:14px; box-shadow:0 50px 120px -30px rgba(0,0,0,.8)">
+
+    <button onClick="{{ onClose }}" aria-label="Close" style="position:absolute; top:16px; right:16px; z-index:5; width:38px; height:38px; border-radius:50%; border:1px solid rgba(235,242,236,.15); background:rgba(21,17,10,.7); color:#c0c9c0; font:400 16px/1 'Geist',sans-serif; cursor:pointer">✕</button>
+
+    <div style="display:grid; grid-template-columns:1.5fr .85fr; gap:0">
+
+      <!-- LEFT -->
+      <div style="padding:clamp(26px,4vw,46px); min-width:0">
+        <div style="font:500 11px/1 'JetBrains Mono',monospace; letter-spacing:.2em; text-transform:uppercase; color:#40ce7e">{{ num }}</div>
+        <h2 style="margin:14px 0 0; font:700 clamp(26px,3.6vw,40px)/1.04 'Geist',sans-serif; letter-spacing:-.025em; color:#eef3ef">{{ title }}</h2>
+        <div style="margin-top:12px; font:500 12px/1.4 'JetBrains Mono',monospace; color:#7f877d">{{ meta }}</div>
+        <p style="margin:20px 0 0; font:400 15px/1.7 'Geist',sans-serif; color:#8d968c">{{ desc }}</p>
+
+        <div style="display:flex; flex-direction:column; gap:13px; margin-top:26px">
+          <sc-for list="{{ highlights }}" as="h" hint-placeholder-count="5">
+            <div style="display:flex; gap:13px; align-items:flex-start">
+              <span style="flex-shrink:0; width:6px; height:6px; border-radius:50%; background:#40ce7e; margin-top:8px"></span>
+              <span style="font:400 14px/1.6 'Geist',sans-serif; color:#c0c9c0">{{ h }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:26px">
+          <sc-for list="{{ tags }}" as="t" hint-placeholder-count="5">
+            <span style="font:500 11px/1 'JetBrains Mono',monospace; color:#40ce7e; background:rgba(64,206,126,.09); border:1px solid rgba(64,206,126,.22); padding:7px 11px; border-radius:3px">{{ t }}</span>
+          </sc-for>
+        </div>
+
+        <!-- media -->
+        <sc-if value="{{ hasShots }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:30px">
+            <div style="position:relative; border:1px solid rgba(235,242,236,.1); border-radius:10px; overflow:hidden; background:#080b08">
+              <img onClick="{{ zoom }}" src="{{ activeShotSrc }}" alt="{{ activeShotLabel }}" style="display:block; width:100%; max-height:340px; object-fit:contain; background:#080b08; cursor:zoom-in">
+              <button onClick="{{ prev }}" aria-label="Previous" style="position:absolute; top:50%; left:10px; transform:translateY(-50%); width:36px; height:36px; border-radius:50%; border:1px solid rgba(235,242,236,.15); background:rgba(16,13,7,.8); color:#e9efe9; font:400 18px/1 'Geist',sans-serif; cursor:pointer">‹</button>
+              <button onClick="{{ next }}" aria-label="Next" style="position:absolute; top:50%; right:10px; transform:translateY(-50%); width:36px; height:36px; border-radius:50%; border:1px solid rgba(235,242,236,.15); background:rgba(16,13,7,.8); color:#e9efe9; font:400 18px/1 'Geist',sans-serif; cursor:pointer">›</button>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-top:12px">
+              <span style="font:500 12px/1 'JetBrains Mono',monospace; color:#7f877d">{{ activeShotLabel }}</span>
+              <span style="font:500 12px/1 'JetBrains Mono',monospace; color:#5e655c">{{ counter }}</span>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ hasBanner }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:30px; border:1px solid rgba(235,242,236,.1); border-radius:10px; overflow:hidden; background:#080b08">
+            <img src="{{ banner }}" alt="{{ title }}" style="display:block; width:100%; object-fit:cover">
+          </div>
+        </sc-if>
+
+        <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:30px">
+          <sc-for list="{{ links }}" as="lk" hint-placeholder-count="1">
+            <a href="{{ lk.url }}" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:8px; font:600 12px/1 'JetBrains Mono',monospace; letter-spacing:.06em; text-transform:uppercase; padding:13px 20px; border-radius:2px; background:{{ lk.bg }}; color:{{ lk.fg }}; border:{{ lk.border }}">{{ lk.name }} →</a>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- RIGHT info panel -->
+      <div style="padding:clamp(26px,4vw,46px); background:rgba(235,242,236,.025); border-left:1px solid rgba(235,242,236,.08)">
+        <div style="display:inline-flex; align-items:center; gap:9px; font:600 11px/1 'JetBrains Mono',monospace; letter-spacing:.18em; text-transform:uppercase; color:#40ce7e">
+          <span style="width:7px; height:7px; border-radius:50%; background:#40ce7e; box-shadow:0 0 9px #40ce7e"></span>Overview
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0; margin-top:22px">
+          <sc-for list="{{ stats }}" as="st" hint-placeholder-count="4">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 0; border-bottom:1px solid rgba(235,242,236,.08)">
+              <span style="font:500 11px/1 'JetBrains Mono',monospace; letter-spacing:.1em; text-transform:uppercase; color:#5e655c">{{ st.label }}</span>
+              <span style="font:500 13px/1.3 'Geist',sans-serif; color:#e9efe9; text-align:right">{{ st.value }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="margin-top:26px; display:flex; flex-direction:column; gap:10px">
+          <sc-for list="{{ links }}" as="lk" hint-placeholder-count="1">
+            <a href="{{ lk.url }}" target="_blank" rel="noopener noreferrer" style="display:flex; align-items:center; gap:12px; padding:14px; border:1px solid rgba(235,242,236,.1); border-radius:8px; background:rgba(235,242,236,.02)">
+              <div style="flex:1; min-width:0">
+                <div style="font:600 13px/1.2 'Geist',sans-serif; color:#e9efe9">{{ lk.name }}</div>
+                <div style="margin-top:3px; font:400 11px/1.2 'JetBrains Mono',monospace; color:#7f877d">{{ lk.sub }}</div>
+              </div>
+              <span style="font:500 15px/1 'JetBrains Mono',monospace; color:#40ce7e">→</span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <sc-if value="{{ zoomed }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ unzoom }}" style="position:fixed; inset:0; z-index:1100; display:flex; align-items:center; justify-content:center; padding:24px; background:rgba(8,6,3,.92); cursor:zoom-out">
+      <img src="{{ activeShotSrc }}" alt="{{ activeShotLabel }}" style="max-width:94vw; max-height:92vh; object-fit:contain; border-radius:8px">
+    </div>
+  </sc-if>
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;100%&quot;},&quot;data&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;any&quot;},&quot;open&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { active: 0, zoomed: false };
+
+  componentDidMount() {
+    this._key = (e) => {
+      if (!this.props.open) return;
+      const shots = this.props.data && this.props.data.shots;
+      if (!shots) return;
+      if (e.key === 'ArrowRight') this.nav(1);
+      if (e.key === 'ArrowLeft') this.nav(-1);
+    };
+    window.addEventListener('keydown', this._key);
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.data !== this.props.data || prevProps.open !== this.props.open) {
+      if (this.state.active !== 0 || this.state.zoomed) this.setState({ active: 0, zoomed: false });
+    }
+  }
+  componentWillUnmount() { window.removeEventListener('keydown', this._key); }
+
+  nav(dir) {
+    const shots = this.props.data && this.props.data.shots;
+    if (!shots || !shots.length) return;
+    this.setState((s) => ({ active: (s.active + dir + shots.length) % shots.length }));
+  }
+
+  renderVals() {
+    const d = this.props.data || {};
+    const shots = d.shots || null;
+    const len = shots ? shots.length : 0;
+    const active = len ? Math.min(this.state.active, len - 1) : 0;
+    const links = (d.links || []).map((lk) => ({
+      ...lk,
+      bg: lk.primary ? '#40ce7e' : 'transparent',
+      fg: lk.primary ? '#04140b' : '#c0c9c0',
+      border: lk.primary ? '1px solid #40ce7e' : '1px solid rgba(235,242,236,.18)',
+    }));
+    return {
+      open: !!this.props.open,
+      onClose: () => this.props.onClose && this.props.onClose(),
+      closeOverlay: () => this.props.onClose && this.props.onClose(),
+      stop: (e) => e.stopPropagation(),
+      num: d.num, title: d.title, meta: d.meta, desc: d.desc,
+      highlights: d.highlights || [], tags: d.tags || [], stats: d.stats || [],
+      links,
+      hasShots: !!(shots && len), shots: shots || [],
+      hasBanner: !!d.banner, banner: d.banner || null,
+      activeShotSrc: len ? shots[active].src : null,
+      activeShotLabel: len ? shots[active].label : '',
+      counter: len ? (active + 1) + ' / ' + len : '',
+      next: () => this.nav(1),
+      prev: () => this.nav(-1),
+      zoom: () => { if (len) this.setState({ zoomed: true }); },
+      unzoom: () => this.setState({ zoomed: false }),
+      zoomed: this.state.zoomed,
+    };
+  }
+}
+</script>
+</body>
+</html>
