@@ -1,4 +1,4 @@
-import avatarImg from '../assets/avatar.jpeg'
+import avatarImg from '../assets/avatar.png'
 import './Hero.css'
 
 export function Hero() {
