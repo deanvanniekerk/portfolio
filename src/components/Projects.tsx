@@ -19,6 +19,7 @@ interface Project {
   previewLabel: string
   previewFit?: 'cover' | 'contain'
   previewTone?: string
+  typeLabel?: string
   delay?: string
 }
 
@@ -36,6 +37,7 @@ function ProjectRow({
   previewLabel,
   previewFit = 'cover',
   previewTone,
+  typeLabel,
   delay,
   index,
   onClick,
@@ -59,7 +61,10 @@ function ProjectRow({
 
       <div className="project-copy">
         <div className="project-num">{num}</div>
-        <h3 className="project-name">{name}</h3>
+        <div className="project-title-row">
+          <h3 className="project-name">{name}</h3>
+          {typeLabel && <span className="project-type-tag">{typeLabel}</span>}
+        </div>
         <p className="project-desc">{desc}</p>
         <div className="project-tags">
           {tags.map((tag) => <span key={tag} className="tag">{tag}</span>)}
@@ -87,6 +92,7 @@ const projects: Project[] = [
     name: 'K53 Study Guide',
     desc: 'Built and maintained a production Android app end-to-end: React/Ionic mobile UI, native Capacitor integrations, premium unlocks, Firebase analytics, Crashlytics, SEO/ASO, and Play Store compliance. 100K+ downloads, 4.6★ rating.',
     tags: ['Mobile', 'TypeScript', 'Ionic', 'Capacitor', 'Firebase'],
+    typeLabel: 'Personal Project',
     previewImage: k53HeroImagegenFan,
     previewLabel: 'K53 Study Guide',
     previewTone: 'project-media--k53',

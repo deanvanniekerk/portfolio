@@ -58,7 +58,7 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
     'Maintained a production mobile product with 100K+ downloads and a 4.5+ Play Store rating.',
   ]
 
-  const tags: string[] = ['Mobile', 'TypeScript', 'Ionic', 'Capacitor', 'Firebase'];
+  const tags: string[] = ['Personal Project', 'Mobile', 'TypeScript', 'Ionic', 'Capacitor', 'Firebase'];
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -138,11 +138,11 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
             </div>
 
             <div className="modal-links">
-              <a href="https://play.google.com/store/apps/details?id=deanvniekerk.k53studyguide.app" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                View on Play Store →
+              <a href="https://k53studyguide.online/" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                Website →
               </a>
-              <a href="https://k53studyguide.online/" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
-                Website
+              <a href="https://play.google.com/store/apps/details?id=deanvniekerk.k53studyguide.app" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+                View on Play Store
               </a>
             </div>
           </div>
@@ -187,24 +187,6 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
 
             {/* Links */}
             <a
-              href="https://play.google.com/store/apps/details?id=deanvniekerk.k53studyguide.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="modal-social-card"
-            >
-              <div className="modal-social-card-icon k53-playstore-icon">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                  <path d="M3.18 23.76c.3.17.64.24.99.2L15.34 12 11.8 8.46 3.18 23.76zm17.29-11.53L17.6 10.6l-3.54 1.4 3.54 1.4 2.87-1.17a1.1 1.1 0 0 0 0-2.0zM3.54.04a1.1 1.1 0 0 0-.36.92v21.08l8.62-8.62L3.54.04zm8.26 11.96L3.18.24c.35-.04.69.03.99.2L15.34 12l-3.54-3.54z"/>
-                </svg>
-              </div>
-              <div className="modal-social-card-body">
-                <div className="modal-social-card-name">Google Play</div>
-                <div className="modal-social-card-sub">View listing</div>
-              </div>
-              <span className="modal-social-card-arrow">→</span>
-            </a>
-
-            <a
               href="https://k53studyguide.online/"
               target="_blank"
               rel="noopener noreferrer"
@@ -219,6 +201,24 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
               <div className="modal-social-card-body">
                 <div className="modal-social-card-name">k53studyguide.online</div>
                 <div className="modal-social-card-sub">Official website</div>
+              </div>
+              <span className="modal-social-card-arrow">→</span>
+            </a>
+
+            <a
+              href="https://play.google.com/store/apps/details?id=deanvniekerk.k53studyguide.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="modal-social-card"
+            >
+              <div className="modal-social-card-icon k53-playstore-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                  <path d="M3.18 23.76c.3.17.64.24.99.2L15.34 12 11.8 8.46 3.18 23.76zm17.29-11.53L17.6 10.6l-3.54 1.4 3.54 1.4 2.87-1.17a1.1 1.1 0 0 0 0-2.0zM3.54.04a1.1 1.1 0 0 0-.36.92v21.08l8.62-8.62L3.54.04zm8.26 11.96L3.18.24c.35-.04.69.03.99.2L15.34 12l-3.54-3.54z"/>
+                </svg>
+              </div>
+              <div className="modal-social-card-body">
+                <div className="modal-social-card-name">Google Play</div>
+                <div className="modal-social-card-sub">View listing</div>
               </div>
               <span className="modal-social-card-arrow">→</span>
             </a>
