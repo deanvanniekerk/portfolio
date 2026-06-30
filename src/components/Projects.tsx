@@ -90,8 +90,8 @@ const projects: Project[] = [
   {
     num: '02 / Personal',
     name: 'K53 Study Guide',
-    desc: 'Built and maintained a production Android app end-to-end: React/Ionic mobile UI, native Capacitor integrations, premium unlocks, Firebase analytics, Crashlytics, SEO/ASO, and Play Store compliance. 100K+ downloads, 4.6★ rating.',
-    tags: ['Mobile', 'TypeScript', 'Ionic', 'Capacitor', 'Firebase'],
+    desc: 'Built and maintained a production Android and iOS app end-to-end: React/Ionic mobile UI, native Capacitor integrations, premium unlocks, Firebase analytics, Crashlytics, SEO/ASO, and store compliance. 100K+ downloads, 4.6★ Play Store rating.',
+    tags: ['Mobile', 'Android', 'iOS', 'Ionic', 'Firebase'],
     typeLabel: 'Personal Project',
     previewImage: k53HeroImagegenFan,
     previewLabel: 'K53 Study Guide',

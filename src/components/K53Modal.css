@@ -88,6 +88,11 @@
   color: #fff;
 }
 
+.k53-appstore-icon {
+  background: #0a84ff !important;
+  color: #fff;
+}
+
 @media (max-width: 520px) {
   .k53-stats {
     flex-direction: column;
