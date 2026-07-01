@@ -96,6 +96,16 @@
   background: #111512;
 }
 
+.project-media--jedidiahops {
+  background: #0b100e;
+}
+
+.project-media--jedidiahops .project-preview-image {
+  aspect-ratio: 1800 / 760;
+  height: auto;
+  object-position: center;
+}
+
 .project-media--edge .project-preview-image {
   aspect-ratio: 1800 / 760;
   height: auto;

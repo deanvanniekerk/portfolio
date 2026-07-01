@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import './Projects.css'
+import { JedidiahOpsModal } from './JedidiahOpsModal'
 import { ProjectModal } from './ProjectModal'
 import { K53Modal } from './K53Modal'
 import { WorkModal } from './WorkModal'
+import jedidiahOpsPreview from '../assets/jedidiahops/preview.png'
 import edgeBannerImagegenTerminal from '../assets/edge/banner-imagegen-terminal.png'
 import aspenBannerUserGenerated from '../assets/aspen/banner-user-generated.png'
 import aspenLogo from '../assets/aspen/logo.svg'
@@ -80,15 +82,25 @@ function ProjectRow({
 const projects: Project[] = [
   {
     num: '01 / Featured',
+    name: 'JedidiahOps',
+    desc: 'Built a manufacturing operations platform for a fabrication business across web admin, shared API, Postgres-backed scheduling, PDFs, an AI assistant, and a new Expo shop-floor mobile app taken from scaffold to Android build/submission in about two weeks.',
+    tags: ['Manufacturing Ops', 'React', 'Expo', 'tRPC', 'Postgres', 'OpenAI'],
+    previewImage: jedidiahOpsPreview,
+    previewLabel: 'JedidiahOps neutral placeholder preview',
+    previewTone: 'project-media--jedidiahops',
+  },
+  {
+    num: '02 / Featured',
     name: 'Edge Trading Platform',
     desc: 'Built key frontend, API, and realtime data surfaces for a live crypto trading platform — discovery feeds, TradingView charts, order-book updates, portfolio views, and quick-trade flows.',
     tags: ['TypeScript', 'React', 'Node.js', 'Kafka', 'RisingWave'],
     previewImage: edgeBannerImagegenTerminal,
     previewLabel: 'Edge trading platform',
     previewTone: 'project-media--edge',
+    delay: 'reveal-delay-1',
   },
   {
-    num: '02 / Personal',
+    num: '03 / Personal',
     name: 'K53 Study Guide',
     desc: 'Built and maintained a production Android and iOS app end-to-end: React/Ionic mobile UI, native Capacitor integrations, premium unlocks, Firebase analytics, Crashlytics, SEO/ASO, and store compliance. 100K+ downloads, 4.6★ Play Store rating.',
     tags: ['Mobile', 'Android', 'iOS', 'Ionic', 'Firebase'],
@@ -96,20 +108,20 @@ const projects: Project[] = [
     previewImage: k53HeroImagegenFan,
     previewLabel: 'K53 Study Guide',
     previewTone: 'project-media--k53',
-    delay: 'reveal-delay-1',
+    delay: 'reveal-delay-2',
   },
   {
-    num: '03 / Web3',
+    num: '04 / Web3',
     name: 'Aspen NFT Platform',
     desc: 'Led engineering on a Web3 membership platform for NFT minting, trading, and white-label creator storefronts. Architected core product flows, decentralised order-book mechanics, and 0x-based smart contracts.',
     tags: ['TypeScript', 'Viem', 'Solidity', '0x Protocol'],
     previewImage: aspenBannerUserGenerated,
     previewLabel: 'Aspen NFT platform',
     previewTone: 'project-media--aspen',
-    delay: 'reveal-delay-2',
+    delay: 'reveal-delay-3',
   },
   {
-    num: '04 / Fintech',
+    num: '05 / Fintech',
     name: 'Kurtosys Systems',
     desc: 'Built full-stack fintech tooling for international asset managers including BMO, Federated Hermes, and Bank of America Merrill Lynch. Delivered database, backend, and frontend features end-to-end while mentoring engineers.',
     tags: ['TypeScript', 'React', 'C#', '.NET', 'SQL'],
@@ -117,12 +129,12 @@ const projects: Project[] = [
     previewLabel: 'Kurtosys systems',
     previewFit: 'contain',
     previewTone: 'project-media--kurtosys',
-    delay: 'reveal-delay-3',
+    delay: 'reveal-delay-4',
   },
 ]
 
 const ASPEN_MODAL = {
-  num: '03 / Web3',
+  num: '04 / Web3',
   title: 'Aspen NFT Platform',
   role: 'Team Lead · Senior Engineer',
   period: 'Jun 2020 – Oct 2024',
@@ -154,7 +166,7 @@ const ASPEN_MODAL = {
 }
 
 const KURTOSYS_MODAL = {
-  num: '04 / Fintech',
+  num: '05 / Fintech',
   title: 'Kurtosys Systems',
   role: 'Senior Engineer',
   period: 'Oct 2018 – Jun 2020',
@@ -181,12 +193,14 @@ const KURTOSYS_MODAL = {
 }
 
 export function Projects() {
+  const [jedidiahOpsOpen, setJedidiahOpsOpen] = useState(false)
   const [edgeOpen, setEdgeOpen] = useState(false)
   const [k53Open, setK53Open] = useState(false)
   const [aspenOpen, setAspenOpen] = useState(false)
   const [kurtosysOpen, setKurtosysOpen] = useState(false)
 
   const openers = [
+    () => setJedidiahOpsOpen(true),
     () => setEdgeOpen(true),
     () => setK53Open(true),
     () => setAspenOpen(true),
@@ -202,7 +216,7 @@ export function Projects() {
               <div className="section-label reveal">03 — Selected Work</div>
               <h2 className="section-title reveal reveal-delay-1">Projects</h2>
             </div>
-            <div className="projects-count reveal reveal-delay-2">01 — 04</div>
+            <div className="projects-count reveal reveal-delay-2">01 — 05</div>
           </div>
 
           <div className="projects-list">
@@ -218,6 +232,7 @@ export function Projects() {
         </div>
       </section>
 
+      <JedidiahOpsModal open={jedidiahOpsOpen} onClose={() => setJedidiahOpsOpen(false)} />
       <ProjectModal open={edgeOpen} onClose={() => setEdgeOpen(false)} />
       <K53Modal open={k53Open} onClose={() => setK53Open(false)} />
       <WorkModal open={aspenOpen} onClose={() => setAspenOpen(false)} {...ASPEN_MODAL} />

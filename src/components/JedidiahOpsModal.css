@@ -1,0 +1,60 @@
+.jedidiahops-modal-panel {
+  max-width: 1120px;
+}
+
+.jedidiahops-carousel-track {
+  background: #080d0b;
+}
+
+.jedidiahops-carousel .modal-carousel-img {
+  object-fit: cover;
+}
+
+.jedidiahops-stats-panel .modal-social-card {
+  margin-top: 1.625rem;
+}
+
+.jedidiahops-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.625rem;
+}
+
+.jedidiahops-stat-card {
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid rgba(64, 206, 126, 0.18);
+  border-radius: 8px;
+  background: rgba(64, 206, 126, 0.06);
+}
+
+.jedidiahops-stat-value {
+  color: var(--green);
+  font-family: var(--font-mono);
+  font-size: clamp(1.25rem, 2.8vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.jedidiahops-stat-label {
+  margin-top: 0.45rem;
+  color: var(--text-mid);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.jedidiahops-github-icon {
+  background: #171b18;
+  color: #fff;
+}
+
+@media (max-width: 460px) {
+  .jedidiahops-stat-grid {
+    grid-template-columns: 1fr;
+  }
+}

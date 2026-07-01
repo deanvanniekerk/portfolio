@@ -76,7 +76,7 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
 
           {/* ── LEFT: detail ── */}
           <div className="modal-left">
-            <div className="modal-num">02 / Personal Project</div>
+            <div className="modal-num">03 / Personal Project</div>
             <h2 className="modal-title">K53 Study Guide</h2>
 
             <div className="modal-meta">

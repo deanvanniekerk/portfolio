@@ -64,7 +64,7 @@ export function ProjectModal({ open, onClose }: ProjectModalProps) {
 
           {/* ── LEFT: detail ── */}
           <div className="modal-left">
-            <div className="modal-num">01 / Featured</div>
+            <div className="modal-num">02 / Featured</div>
             <h2 className="modal-title">Edge Trading Platform</h2>
 
             <div className="modal-meta">
