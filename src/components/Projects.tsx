@@ -4,7 +4,7 @@ import { JedidiahOpsModal } from './JedidiahOpsModal'
 import { ProjectModal } from './ProjectModal'
 import { K53Modal } from './K53Modal'
 import { WorkModal } from './WorkModal'
-import jedidiahOpsPreview from '../assets/jedidiahops/preview.png'
+import jedidiahOpsHeroImagegen from '../assets/jedidiahops/hero-imagegen.webp'
 import edgeBannerImagegenTerminal from '../assets/edge/banner-imagegen-terminal.png'
 import aspenBannerUserGenerated from '../assets/aspen/banner-user-generated.png'
 import aspenLogo from '../assets/aspen/logo.svg'
@@ -83,10 +83,11 @@ const projects: Project[] = [
   {
     num: '01 / Featured',
     name: 'JedidiahOps',
-    desc: 'Built a manufacturing operations platform for a fabrication business across web admin, shared API, Postgres-backed scheduling, PDFs, an AI assistant, and a new Expo shop-floor mobile app taken from scaffold to Android build/submission in about two weeks.',
-    tags: ['Manufacturing Ops', 'React', 'Expo', 'tRPC', 'Postgres', 'OpenAI'],
-    previewImage: jedidiahOpsPreview,
-    previewLabel: 'JedidiahOps neutral placeholder preview',
+    desc: 'Built a manufacturing operations platform for a fabrication business across web admin, shared API, Postgres-backed scheduling, PDFs, an AI assistant, and a React Native shop-floor mobile app. Started May 2026.',
+    tags: ['Manufacturing Ops', 'React', 'React Native', 'tRPC', 'Postgres', 'OpenAI'],
+    typeLabel: 'Contract Work',
+    previewImage: jedidiahOpsHeroImagegen,
+    previewLabel: 'Generated JedidiahOps product hero',
     previewTone: 'project-media--jedidiahops',
   },
   {

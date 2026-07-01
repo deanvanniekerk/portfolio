@@ -3,11 +3,58 @@
 }
 
 .jedidiahops-carousel-track {
+  height: clamp(260px, 36vw, 420px);
+  min-height: 0;
+  max-height: none;
   background: #080d0b;
 }
 
+.jedidiahops-carousel-track--tablet {
+  width: min(100%, 430px);
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 834 / 1200;
+  margin-inline: auto;
+  border-radius: 20px;
+}
+
 .jedidiahops-carousel .modal-carousel-img {
-  object-fit: cover;
+  object-fit: contain;
+  padding: 12px;
+}
+
+.jedidiahops-carousel-track--tablet .modal-carousel-img {
+  padding: 10px;
+}
+
+.jedidiahops-carousel--tablet {
+  max-width: min(100%, 460px);
+  margin-inline: auto;
+}
+
+.jedidiahops-carousel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.jedidiahops-carousel-heading h3 {
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.jedidiahops-carousel-heading span {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .jedidiahops-stats-panel .modal-social-card {
@@ -27,6 +74,10 @@
   border: 1px solid rgba(64, 206, 126, 0.18);
   border-radius: 8px;
   background: rgba(64, 206, 126, 0.06);
+}
+
+.jedidiahops-stat-card:only-child {
+  grid-column: 1 / -1;
 }
 
 .jedidiahops-stat-value {
@@ -56,5 +107,13 @@
 @media (max-width: 460px) {
   .jedidiahops-stat-grid {
     grid-template-columns: 1fr;
+  }
+
+  .jedidiahops-carousel-track {
+    height: 230px;
+  }
+
+  .jedidiahops-carousel-track--tablet {
+    height: auto;
   }
 }
