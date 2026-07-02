@@ -25,7 +25,7 @@ const rules = [
   'Keep fundamentals sharp by explaining the solution back to myself.',
 ]
 
-const tools = ['Codex + GPT-5.5', 'Claude Code + Opus 4.8', 'Cursor']
+const tools = ['Codex + GPT-5.5', 'Claude Code + Fable 5', 'Cursor']
 
 export function AiWorkflow() {
   return (
