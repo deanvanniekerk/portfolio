@@ -93,6 +93,11 @@
   color: #fff;
 }
 
+.k53-github-icon {
+  background: #171b18 !important;
+  color: #fff;
+}
+
 @media (max-width: 520px) {
   .k53-stats {
     flex-direction: column;

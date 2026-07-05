@@ -1,5 +1,5 @@
 import { type MouseEvent, useEffect, useState } from 'react'
-import { siApple } from 'simple-icons'
+import { siApple, siGithub } from 'simple-icons'
 import './ProjectModal.css'
 import './K53Modal.css'
 import screenStudyHome from '../assets/k53/screen-study-home.webp'
@@ -13,6 +13,7 @@ import { TechIcon } from './TechIcon'
 const APP_STORE_URL = 'https://apps.apple.com/us/app/k53-study-guide/id6784718443'
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=deanvniekerk.k53studyguide.app'
 const WEBSITE_URL = 'https://k53studyguide.online/'
+const REPO_URL = 'https://github.com/deanvanniekerk/k53studyguide'
 
 const SCREENSHOTS = [
   { src: screenStudyHome, label: 'Study home' },
@@ -155,6 +156,9 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
               <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
                 View on App Store
               </a>
+              <a href={REPO_URL} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+                GitHub repo →
+              </a>
             </div>
           </div>
 
@@ -162,7 +166,7 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
           <div className="modal-social k53-stats-panel">
             <div className="modal-social-header">
               <span className="modal-feed-dot" />
-              Live Stores
+              Project Links
             </div>
 
             {/* Big stats */}
@@ -248,6 +252,22 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
               <div className="modal-social-card-body">
                 <div className="modal-social-card-name">Apple App Store</div>
                 <div className="modal-social-card-sub">iOS version 1.0</div>
+              </div>
+              <span className="modal-social-card-arrow">→</span>
+            </a>
+
+            <a
+              href={REPO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="modal-social-card"
+            >
+              <div className="modal-social-card-icon k53-github-icon">
+                <TechIcon path={siGithub.path} color="#fff" size={21} />
+              </div>
+              <div className="modal-social-card-body">
+                <div className="modal-social-card-name">GitHub repository</div>
+                <div className="modal-social-card-sub">deanvanniekerk/k53studyguide</div>
               </div>
               <span className="modal-social-card-arrow">→</span>
             </a>
