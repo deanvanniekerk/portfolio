@@ -58,7 +58,7 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
 
   const highlights = [
     'Built the app solo with React, Ionic, Capacitor, TypeScript, Redux, Vite, and native Android/iOS integrations.',
-    'Launched version 1.0 on the Apple App Store, expanding the production app from Android to iOS.',
+    'Launched on the Apple App Store, expanding the production app from Android to iOS.',
     'Implemented the study, quiz, progress, profile, and dynamically generated mock-test flows.',
     'Added full-funnel Firebase/GA4 analytics covering landing-page handoff, app engagement, premium prompts, checkout, and purchase outcomes.',
     'Implemented one-time premium unlocks, app-rating prompts, Crashlytics, and mobile store compliance updates.',
@@ -183,13 +183,6 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
                 </div>
                 <div className="k53-stat-label">Play rating</div>
               </div>
-              <div className="k53-stat-divider" />
-              <div className="k53-stat">
-                <div className="k53-stat-value">
-                  1.0
-                </div>
-                <div className="k53-stat-label">App Store launch</div>
-              </div>
             </div>
 
             {/* Star bar */}
@@ -251,7 +244,7 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
               </div>
               <div className="modal-social-card-body">
                 <div className="modal-social-card-name">Apple App Store</div>
-                <div className="modal-social-card-sub">iOS version 1.0</div>
+                <div className="modal-social-card-sub">View iOS listing</div>
               </div>
               <span className="modal-social-card-arrow">→</span>
             </a>
