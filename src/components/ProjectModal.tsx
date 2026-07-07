@@ -45,12 +45,11 @@ export function ProjectModal({ open, onClose }: ProjectModalProps) {
   if (!open) return null
 
   const highlights = [
-    'Delivered key frontend and API surfaces for the Edge beta launch.',
-    'Integrated TradingView chart widget with a TimescaleDB-backed OHLC API for low-latency candlestick data.',
-    'Implemented realtime discovery and trending-pairs flows across SQL/RisingWave views, Kafka/protobuf messages, API routers, and subscription consumers.',
-    'Optimised high-frequency trading interfaces including feed filters, tracked-wallet views, holdings tables, and charting paths.',
-    'Built responsive scanner and discovery experiences with presets, wallet/watchlist source filtering, and quick-trade actions.',
-    'Collaborated with a small cross-functional international team.',
+    'Built React/TypeScript trading, discovery, scanner, charting, wallet/watchlist, and order-update workflows for a crypto trading platform.',
+    'Delivered high-frequency market-data interfaces using Zustand, TanStack Query, virtualized tables/lists, memoized cells, and batched live updates.',
+    'Integrated TradingView with custom OHLC APIs for swap-derived candlestick data, live chart updates, saved layouts, and token/order overlays.',
+    'Implemented real-time discovery and trending-pair flows across Kafka events, compressed tRPC subscriptions, WebSockets, and RisingWave queries.',
+    'Collaborated across frontend, backend, data, and product in a small remote international team.',
   ]
 
   const tags = ['TypeScript', 'React', 'Node.js', 'PostgreSQL', 'TimescaleDB', 'RisingWave', 'Kafka']
@@ -76,10 +75,7 @@ export function ProjectModal({ open, onClose }: ProjectModalProps) {
             </div>
 
             <p className="modal-desc">
-              A crypto trading startup building realtime trading, discovery, wallet, and
-              alerting tools. I worked across the TypeScript monorepo: React/Vite interfaces,
-              API services, SQL migrations, shared schemas, realtime subscriptions, and
-              trading UX.
+              A tech startup specializing in cryptocurrency trading solutions.
             </p>
 
             <div className="modal-highlights">
