@@ -1,73 +1,46 @@
-# React + TypeScript + Vite
+# Dean van Niekerk's portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio for senior full-stack engineering roles, featuring JedidiahOps, Edge and K53 Study Guide.
 
-Currently, two official plugins are available:
+**Live site:** https://vanniekerk.online
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Development
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```sh
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+React, TypeScript and Vite, with native CSS and locally bundled Geist fonts. No API keys or external data requests are needed to render the portfolio.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```sh
+npm run lint
+npm run build
+npm run preview
 ```
+
+## Content
+
+- `src/data/projects.ts`: project facts, case-study copy, screenshots and external links.
+- `src/components/Home.tsx`: introduction, selected work, experience and contact.
+- `src/components/ProjectPage.tsx`: case-study layout.
+- `src/components/Gallery.tsx`: screenshot navigation and native accessible image dialog.
+- `public/Dean-van-Niekerk-Resume.pdf`: downloadable resume. Update this when the resume changes.
+
+Case studies use hash URLs, such as `/#work/jedidiahops`, so shared links and reloads work on the existing static hosting without rewrite rules. They share the homepage social preview; project-specific server-rendered previews would require a different routing/build setup.
+
+The resume is maintained in `output/pdf/Dean-van-Niekerk-Resume.md`. Run `python3 scripts/build-resume.py` with ReportLab installed to generate the two-page PDF, then copy it to `public/Dean-van-Niekerk-Resume.pdf`. The script uses bundled Liberation Sans fonts; set `RESUME_FONT_DIR` if using another local installation. Render and inspect both pages after edits, and keep dates and claims aligned with the site. K53's Android download milestone is owner-supplied; confirm the store statistics before changing it.
+
+## Design
+
+The redesign retains the original green accent and dark theme, brings actual product screenshots forward, and prioritises case studies over self-rated skills or contribution counts. Design variance 6, motion intensity 3, visual density 4: restrained native CSS, clear type hierarchy and functional transitions. Reduced-motion preferences disable animation.
+
+## Deployment
+
+The existing FTP deployment script is retained:
+
+```sh
+npm run deploy:profile
+```
+
+It builds and uploads `dist/`, using the FTP configuration in the ignored `.dev.env`. Run only when publishing is intended. Never commit credentials.
