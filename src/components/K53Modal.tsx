@@ -1,4 +1,5 @@
-import { type MouseEvent, useEffect, useState } from 'react'
+import { ScreenshotLightbox } from './ScreenshotLightbox'
+import { useEffect, useState } from 'react'
 import { siApple, siGithub } from 'simple-icons'
 import './ProjectModal.css'
 import './K53Modal.css'
@@ -33,11 +34,6 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
   const [active, setActive] = useState(0)
   const [zoomed, setZoomed] = useState(false)
 
-  const closeZoom = (event?: MouseEvent<HTMLElement>) => {
-    event?.stopPropagation()
-    setZoomed(false)
-  }
-
   useEffect(() => {
     if (!open) return
     document.body.style.overflow = 'hidden'
@@ -45,14 +41,16 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
   }, [open])
 
   useEffect(() => {
+    if (!open || zoomed) return
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') { if (zoomed) setZoomed(false); else onClose() }
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') e.preventDefault()
       if (e.key === 'ArrowRight') setActive((a) => (a + 1) % SCREENSHOTS.length)
       if (e.key === 'ArrowLeft')  setActive((a) => (a - 1 + SCREENSHOTS.length) % SCREENSHOTS.length)
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  }, [onClose, zoomed])
+  }, [onClose, open, zoomed])
 
   if (!open) return null
 
@@ -286,15 +284,12 @@ export function K53Modal({ open, onClose }: K53ModalProps) {
       </div>
 
       {zoomed && (
-        <div className="modal-lightbox" onClick={closeZoom} role="dialog" aria-modal="true">
-          <img
-            src={SCREENSHOTS[active].src}
-            alt={SCREENSHOTS[active].label}
-            className="modal-lightbox-img"
-            onClick={(e) => e.stopPropagation()}
-          />
-          <button className="modal-lightbox-close" onClick={closeZoom} aria-label="Close enlarged image">✕</button>
-        </div>
+        <ScreenshotLightbox
+          screenshots={SCREENSHOTS}
+          active={active}
+          onNavigate={(direction) => setActive((index) => (index + direction + SCREENSHOTS.length) % SCREENSHOTS.length)}
+          onClose={() => setZoomed(false)}
+        />
       )}
     </div>
   )

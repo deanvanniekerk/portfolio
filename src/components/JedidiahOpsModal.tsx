@@ -1,4 +1,5 @@
-import { type MouseEvent, useCallback, useEffect, useState } from 'react'
+import { ScreenshotLightbox } from './ScreenshotLightbox'
+import { useCallback, useEffect, useState } from 'react'
 import { siGithub } from 'simple-icons'
 import webScreenshot1 from '../assets/jedidiahops/web/dashboard.webp'
 import webScreenshot2 from '../assets/jedidiahops/web/planning.webp'
@@ -134,7 +135,6 @@ export function JedidiahOpsModal({ open, onClose }: JedidiahOpsModalProps) {
   const [zoomed, setZoomed] = useState(false)
   const screenshots = activeGallery === 'web' ? WEB_SCREENSHOTS : MOBILE_SCREENSHOTS
   const activeIndex = activeGallery === 'web' ? activeWeb : activeMobile
-  const activeScreenshot = screenshots[activeIndex]
 
   const navigate = useCallback((direction: number) => {
     if (activeGallery === 'web') {
@@ -144,11 +144,6 @@ export function JedidiahOpsModal({ open, onClose }: JedidiahOpsModalProps) {
     }
   }, [activeGallery])
 
-  const closeZoom = (event?: MouseEvent<HTMLElement>) => {
-    event?.stopPropagation()
-    setZoomed(false)
-  }
-
   useEffect(() => {
     if (!open) return
     document.body.style.overflow = 'hidden'
@@ -156,9 +151,9 @@ export function JedidiahOpsModal({ open, onClose }: JedidiahOpsModalProps) {
   }, [open])
 
   useEffect(() => {
-    if (!open) return
+    if (!open || zoomed) return
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') { if (zoomed) setZoomed(false); else onClose() }
+      if (e.key === 'Escape') onClose()
       if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
         e.preventDefault()
         navigate(e.key === 'ArrowRight' ? 1 : -1)
@@ -315,20 +310,12 @@ export function JedidiahOpsModal({ open, onClose }: JedidiahOpsModalProps) {
       </div>
 
       {zoomed && (
-        <div className="modal-lightbox jedidiahops-lightbox" onClick={closeZoom} role="dialog" aria-modal="true" aria-label="Screenshot gallery">
-          <img
-            src={activeScreenshot.src}
-            alt={activeScreenshot.label}
-            className="modal-lightbox-img"
-            onClick={(e) => e.stopPropagation()}
-          />
-          <div className="jedidiahops-lightbox-controls" onClick={(e) => e.stopPropagation()}>
-            <button onClick={() => navigate(-1)} aria-label="Previous enlarged screenshot">‹</button>
-            <span aria-live="polite">{activeIndex + 1} / {screenshots.length} · {activeScreenshot.label}</span>
-            <button onClick={() => navigate(1)} aria-label="Next enlarged screenshot">›</button>
-          </div>
-          <button className="modal-lightbox-close" onClick={closeZoom} aria-label="Close enlarged image">✕</button>
-        </div>
+        <ScreenshotLightbox
+          screenshots={screenshots}
+          active={activeIndex}
+          onNavigate={navigate}
+          onClose={() => setZoomed(false)}
+        />
       )}
     </div>
   )
