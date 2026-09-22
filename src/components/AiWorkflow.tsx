@@ -26,8 +26,8 @@ const rules = [
 ]
 
 const tools = [
-  'Codex + GPT-5.6 — implementation',
-  'Claude Code + Fable 5 — planning & review',
+  'Codex + GPT-6 Astra — implementation',
+  'Claude Code + Fable 5.1 — planning & review',
   'Cursor',
 ]
 

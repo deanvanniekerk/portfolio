@@ -9,11 +9,11 @@
   background: #080d0b;
 }
 
-.jedidiahops-carousel-track--tablet {
-  width: min(100%, 430px);
+.jedidiahops-carousel-track--mobile {
+  width: min(100%, 320px);
   height: auto;
   min-height: 0;
-  aspect-ratio: 834 / 1200;
+  aspect-ratio: 1179 / 2556;
   margin-inline: auto;
   border-radius: 20px;
 }
@@ -23,12 +23,12 @@
   padding: 12px;
 }
 
-.jedidiahops-carousel-track--tablet .modal-carousel-img {
+.jedidiahops-carousel-track--mobile .modal-carousel-img {
   padding: 10px;
 }
 
-.jedidiahops-carousel--tablet {
-  max-width: min(100%, 460px);
+.jedidiahops-carousel--mobile {
+  max-width: min(100%, 350px);
   margin-inline: auto;
 }
 
@@ -113,7 +113,70 @@
     height: 230px;
   }
 
-  .jedidiahops-carousel-track--tablet {
+  .jedidiahops-carousel-track--mobile {
     height: auto;
   }
+}
+
+.jedidiahops-carousel .modal-carousel-bar {
+  flex-wrap: wrap;
+}
+
+.jedidiahops-carousel .modal-carousel-label {
+  line-height: 1.5;
+}
+
+.jedidiahops-lightbox {
+  padding: 3.5rem 1rem 6rem;
+}
+
+.jedidiahops-lightbox .modal-lightbox-img {
+  max-width: 100%;
+  max-height: calc(100dvh - 9.5rem);
+}
+
+.jedidiahops-lightbox-controls {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 1rem;
+  width: 560px;
+  max-width: calc(100% - 2rem);
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg2);
+  color: var(--text);
+  cursor: default;
+}
+
+.jedidiahops-lightbox-controls span {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.jedidiahops-lightbox-controls button {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--bg3);
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.jedidiahops-lightbox-controls button:hover,
+.jedidiahops-lightbox-controls button:focus-visible {
+  border-color: var(--green);
+  color: var(--green);
 }

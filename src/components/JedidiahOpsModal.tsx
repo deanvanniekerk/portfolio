@@ -1,19 +1,21 @@
-import { type MouseEvent, useEffect, useState } from 'react'
+import { type MouseEvent, useCallback, useEffect, useState } from 'react'
 import { siGithub } from 'simple-icons'
-import tabletScreenshot1 from '../assets/jedidiahops/tablet/tablet-1.webp'
-import tabletScreenshot2 from '../assets/jedidiahops/tablet/tablet-2.webp'
-import tabletScreenshot3 from '../assets/jedidiahops/tablet/tablet-3.webp'
-import tabletScreenshot4 from '../assets/jedidiahops/tablet/tablet-4.webp'
-import tabletScreenshot5 from '../assets/jedidiahops/tablet/tablet-5.webp'
-import tabletScreenshot6 from '../assets/jedidiahops/tablet/tablet-6.webp'
-import webScreenshot1 from '../assets/jedidiahops/web/web-1.webp'
-import webScreenshot2 from '../assets/jedidiahops/web/web-2.webp'
-import webScreenshot3 from '../assets/jedidiahops/web/web-3.webp'
-import webScreenshot4 from '../assets/jedidiahops/web/web-4.webp'
-import webScreenshot5 from '../assets/jedidiahops/web/web-5.webp'
-import webScreenshot6 from '../assets/jedidiahops/web/web-6.webp'
-import webScreenshot7 from '../assets/jedidiahops/web/web-7.webp'
-import webScreenshot8 from '../assets/jedidiahops/web/web-8.webp'
+import webScreenshot1 from '../assets/jedidiahops/web/dashboard.webp'
+import webScreenshot2 from '../assets/jedidiahops/web/planning.webp'
+import webScreenshot3 from '../assets/jedidiahops/web/activity.webp'
+import webScreenshot4 from '../assets/jedidiahops/web/buy-list.webp'
+import webScreenshot5 from '../assets/jedidiahops/web/purchase-order.webp'
+import webScreenshot6 from '../assets/jedidiahops/web/quotes.webp'
+import webScreenshot7 from '../assets/jedidiahops/web/quote-pdf.webp'
+import webScreenshot8 from '../assets/jedidiahops/web/product.webp'
+import webScreenshot9 from '../assets/jedidiahops/web/translations.webp'
+import mobileScreenshot1 from '../assets/jedidiahops/mobile/activity.webp'
+import mobileScreenshot2 from '../assets/jedidiahops/mobile/jobs.webp'
+import mobileScreenshot3 from '../assets/jedidiahops/mobile/quotes.webp'
+import mobileScreenshot4 from '../assets/jedidiahops/mobile/product.webp'
+import mobileScreenshot5 from '../assets/jedidiahops/mobile/stock-movements.webp'
+import mobileScreenshot6 from '../assets/jedidiahops/mobile/job-progress.webp'
+import mobileScreenshot7 from '../assets/jedidiahops/mobile/document.webp'
 import { TechIcon } from './TechIcon'
 import './ProjectModal.css'
 import './JedidiahOpsModal.css'
@@ -25,26 +27,28 @@ interface ScreenshotItem {
   label: string
 }
 
-type GalleryKey = 'web' | 'tablet'
+type GalleryKey = 'web' | 'mobile'
 
 const WEB_SCREENSHOTS: ScreenshotItem[] = [
-  { src: webScreenshot1, label: 'Web dashboard' },
-  { src: webScreenshot2, label: 'Web product editor' },
-  { src: webScreenshot3, label: 'Web product media' },
-  { src: webScreenshot4, label: 'Web quote detail' },
-  { src: webScreenshot5, label: 'Web quote PDF' },
-  { src: webScreenshot6, label: 'Web job scheduling' },
-  { src: webScreenshot7, label: 'Web planning board' },
-  { src: webScreenshot8, label: 'Web assistant' },
+  { src: webScreenshot1, label: 'Operations dashboard' },
+  { src: webScreenshot2, label: 'Bay-by-bay production planning' },
+  { src: webScreenshot3, label: 'Job activity timeline' },
+  { src: webScreenshot4, label: 'Inventory shortages and buy list' },
+  { src: webScreenshot5, label: 'Purchase order editor' },
+  { src: webScreenshot6, label: 'Product and service quotes' },
+  { src: webScreenshot7, label: 'Branded quotation PDF' },
+  { src: webScreenshot8, label: 'Product catalogue and publishing' },
+  { src: webScreenshot9, label: 'English and Afrikaans translations' },
 ]
 
-const TABLET_SCREENSHOTS: ScreenshotItem[] = [
-  { src: tabletScreenshot1, label: 'Tablet login' },
-  { src: tabletScreenshot2, label: 'Tablet job board' },
-  { src: tabletScreenshot3, label: 'Tablet active job' },
-  { src: tabletScreenshot4, label: 'Tablet job detail' },
-  { src: tabletScreenshot5, label: 'Tablet document viewer' },
-  { src: tabletScreenshot6, label: 'Tablet feedback form' },
+const MOBILE_SCREENSHOTS: ScreenshotItem[] = [
+  { src: mobileScreenshot1, label: 'Shop-floor activity feed' },
+  { src: mobileScreenshot2, label: 'Active and scheduled jobs' },
+  { src: mobileScreenshot3, label: 'Quote pipeline' },
+  { src: mobileScreenshot4, label: 'Product details and website links' },
+  { src: mobileScreenshot5, label: 'Stock checkout, returns and receiving' },
+  { src: mobileScreenshot6, label: 'Job progress and production route' },
+  { src: mobileScreenshot7, label: 'Engineering drawings and bill of materials' },
 ]
 
 interface JedidiahOpsModalProps {
@@ -57,7 +61,7 @@ interface ScreenshotCarouselProps {
   gallery: GalleryKey
   onActivateGallery: (gallery: GalleryKey) => void
   onActiveChange: (index: number) => void
-  onZoom: (screenshot: ScreenshotItem) => void
+  onZoom: () => void
   screenshots: ScreenshotItem[]
   title: string
 }
@@ -91,7 +95,7 @@ function ScreenshotCarousel({
             className={`modal-carousel-img ${i === active ? 'active' : ''}`}
             onClick={() => {
               onActivateGallery(gallery)
-              onZoom(s)
+              onZoom()
             }}
           />
         ))}
@@ -125,13 +129,24 @@ function ScreenshotCarousel({
 
 export function JedidiahOpsModal({ open, onClose }: JedidiahOpsModalProps) {
   const [activeWeb, setActiveWeb] = useState(0)
-  const [activeTablet, setActiveTablet] = useState(0)
+  const [activeMobile, setActiveMobile] = useState(0)
   const [activeGallery, setActiveGallery] = useState<GalleryKey>('web')
-  const [zoomed, setZoomed] = useState<ScreenshotItem | null>(null)
+  const [zoomed, setZoomed] = useState(false)
+  const screenshots = activeGallery === 'web' ? WEB_SCREENSHOTS : MOBILE_SCREENSHOTS
+  const activeIndex = activeGallery === 'web' ? activeWeb : activeMobile
+  const activeScreenshot = screenshots[activeIndex]
+
+  const navigate = useCallback((direction: number) => {
+    if (activeGallery === 'web') {
+      setActiveWeb((index) => (index + direction + WEB_SCREENSHOTS.length) % WEB_SCREENSHOTS.length)
+    } else {
+      setActiveMobile((index) => (index + direction + MOBILE_SCREENSHOTS.length) % MOBILE_SCREENSHOTS.length)
+    }
+  }, [activeGallery])
 
   const closeZoom = (event?: MouseEvent<HTMLElement>) => {
     event?.stopPropagation()
-    setZoomed(null)
+    setZoomed(false)
   }
 
   useEffect(() => {
@@ -141,30 +156,32 @@ export function JedidiahOpsModal({ open, onClose }: JedidiahOpsModalProps) {
   }, [open])
 
   useEffect(() => {
+    if (!open) return
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') { if (zoomed) setZoomed(null); else onClose() }
-      if (e.key === 'ArrowRight' && activeGallery === 'web') setActiveWeb((a) => (a + 1) % WEB_SCREENSHOTS.length)
-      if (e.key === 'ArrowLeft' && activeGallery === 'web') setActiveWeb((a) => (a - 1 + WEB_SCREENSHOTS.length) % WEB_SCREENSHOTS.length)
-      if (e.key === 'ArrowRight' && activeGallery === 'tablet') setActiveTablet((a) => (a + 1) % TABLET_SCREENSHOTS.length)
-      if (e.key === 'ArrowLeft' && activeGallery === 'tablet') setActiveTablet((a) => (a - 1 + TABLET_SCREENSHOTS.length) % TABLET_SCREENSHOTS.length)
+      if (e.key === 'Escape') { if (zoomed) setZoomed(false); else onClose() }
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        e.preventDefault()
+        navigate(e.key === 'ArrowRight' ? 1 : -1)
+      }
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  }, [activeGallery, onClose, zoomed])
+  }, [navigate, onClose, open, zoomed])
 
   if (!open) return null
 
   const highlights = [
-    'Built the React/Vite admin app around permission-gated quote, job, bay, product, document, feedback, and scheduling routes.',
-    'Wired the JedidiahOps assistant through the OpenAI Agents SDK and /ai/chat-stream, with permission-filtered read/write tools, route metadata, and a draft-email flow.',
-    'Kept web and React Native mobile on the same Fastify/tRPC contract, so the shop-floor UI could reuse cached board reads and detail queries instead of carrying a separate API.',
-    'Modeled the production workflow in Postgres and Drizzle with normalized scheduling, queue, assignment, file, and metadata tables.',
-    'Built React Native shop-floor flows with React Query, protected-session reconnect handling, card-based board screens, detail panes, and typed mutations.',
-    'Generated branded PDFs with @pkg/pdf, then served authenticated download routes to a local-file mobile viewer.',
-    'Kept repo-local agent files and skills for PR-comment follow-up, prompt audits, dev setup, and isolated parallel environments.',
+    'Connected product and service quotes to production jobs, with optional assemblies, branded quote PDFs, and tracking for individual equipment units.',
+    'Built bay-by-bay planning around working calendars, production routes, and department work times, with dashboard views of capacity, pipeline, and shop-floor activity.',
+    'Added inventory and procurement: bills of materials, job stock commitments, shortage-driven buy lists, purchase orders, receiving, supplier invoice matching, stocktakes, and job close-out costing.',
+    'Expanded the Expo / React Native app for iOS and Android with job progress, quotes, activity feeds, stock movements, and engineering-document viewing and sharing.',
+    'Connected the product catalogue to a public website and PDF brochures, with English and Afrikaans content, AI translations, and manual review controls.',
+    'Built a permission-aware assistant for web and mobile using the Vercel AI SDK and OpenAI, plus AI-assisted supplier invoice extraction.',
+    'Extended the platform to Jedidiah Contracting with machine-hour capture, offline mobile reading sync, manager job queues, and completion sign-off. Each business keeps its own data and access rules.',
+    'Kept web and mobile on a shared Fastify/tRPC API and Postgres/Drizzle model, with server-side permissions, audit history, integration tests, and mobile error monitoring.',
   ]
 
-  const tags = ['React', 'React Native', 'tRPC', 'Fastify', 'Postgres', 'Drizzle', 'OpenAI SDK']
+  const tags = ['TypeScript', 'React', 'React Native', 'Expo', 'tRPC', 'Fastify', 'Postgres', 'Drizzle', 'Vercel AI SDK', 'OpenAI']
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -179,17 +196,19 @@ export function JedidiahOpsModal({ open, onClose }: JedidiahOpsModalProps) {
             <div className="modal-meta">
               <span className="modal-meta-role">Contract work</span>
               <span className="modal-meta-sep">·</span>
-              <span className="modal-meta-date">Manufacturing ops platform</span>
+              <span className="modal-meta-date">Manufacturing + contracting</span>
               <span className="modal-meta-sep">·</span>
-              <span className="modal-meta-remote">Web + Mobile · 2026</span>
+              <span className="modal-meta-remote">Web + Mobile · May 2026–present</span>
             </div>
 
             <p className="modal-desc">
-              I started JedidiahOps in May 2026 for a fabrication business. It began as a web-based
-              admin system, then grew into a shop-floor product where operators can see jobs, bay
-              schedules, documents, assemblies, and submit feedback from the floor. I worked closely
-              with the client to understand the real operating needs, drive out requirements, resolve
-              issues as they surfaced, and keep scope aligned as the product evolved.
+              I started JedidiahOps in May 2026 for Jedidiah Equipment, an agricultural equipment
+              manufacturer. Working directly with the business, I have grown it from a web admin
+              system into a connected platform for quoting, production planning, inventory,
+              procurement, and shop-floor work. It now spans desktop, iOS, Android, and a bilingual
+              public product website. I own
+              delivery across the interface, API, data model, and mobile app, turning day-to-day
+              operating needs into working software.
             </p>
 
             <div className="modal-highlights">
@@ -210,19 +229,19 @@ export function JedidiahOpsModal({ open, onClose }: JedidiahOpsModalProps) {
               gallery="web"
               onActivateGallery={setActiveGallery}
               onActiveChange={setActiveWeb}
-              onZoom={setZoomed}
+              onZoom={() => setZoomed(true)}
               screenshots={WEB_SCREENSHOTS}
-              title="Web app"
+              title="Desktop app"
             />
 
             <ScreenshotCarousel
-              active={activeTablet}
-              gallery="tablet"
+              active={activeMobile}
+              gallery="mobile"
               onActivateGallery={setActiveGallery}
-              onActiveChange={setActiveTablet}
-              onZoom={setZoomed}
-              screenshots={TABLET_SCREENSHOTS}
-              title="Tablet app"
+              onActiveChange={setActiveMobile}
+              onZoom={() => setZoomed(true)}
+              screenshots={MOBILE_SCREENSHOTS}
+              title="Mobile app"
             />
 
             <div className="modal-links">
@@ -243,6 +262,10 @@ export function JedidiahOpsModal({ open, onClose }: JedidiahOpsModalProps) {
                 <div className="jedidiahops-stat-value">May 2026</div>
                 <div className="jedidiahops-stat-label">Started</div>
               </div>
+              <div className="jedidiahops-stat-card">
+                <div className="jedidiahops-stat-value">Sep 2026</div>
+                <div className="jedidiahops-stat-label">Project updated</div>
+              </div>
             </div>
 
             <a
@@ -256,7 +279,7 @@ export function JedidiahOpsModal({ open, onClose }: JedidiahOpsModalProps) {
               </div>
               <div className="modal-social-card-body">
                 <div className="modal-social-card-name">GitHub repository</div>
-                <div className="modal-social-card-sub">Public portfolio source</div>
+                <div className="modal-social-card-sub">Platform source code</div>
               </div>
               <span className="modal-social-card-arrow">→</span>
             </a>
@@ -273,11 +296,11 @@ export function JedidiahOpsModal({ open, onClose }: JedidiahOpsModalProps) {
             </div>
             <div className="modal-social-stat">
               <span className="modal-social-stat-label">Scope</span>
-              <span className="modal-social-stat-value">Web · Mobile · API · AI</span>
+              <span className="modal-social-stat-value">Web · Mobile · API · AI · Website</span>
             </div>
             <div className="modal-social-stat">
               <span className="modal-social-stat-label">Mobile</span>
-              <span className="modal-social-stat-value">React Native · Android submission</span>
+              <span className="modal-social-stat-value">Expo · iOS + Android</span>
             </div>
             <div className="modal-social-stat">
               <span className="modal-social-stat-label">Data</span>
@@ -285,20 +308,25 @@ export function JedidiahOpsModal({ open, onClose }: JedidiahOpsModalProps) {
             </div>
             <div className="modal-social-stat">
               <span className="modal-social-stat-label">Docs</span>
-              <span className="modal-social-stat-value">PDF generation · Auth viewing</span>
+              <span className="modal-social-stat-value">Quotes · Brochures · Drawings</span>
             </div>
           </div>
         </div>
       </div>
 
       {zoomed && (
-        <div className="modal-lightbox" onClick={closeZoom} role="dialog" aria-modal="true">
+        <div className="modal-lightbox jedidiahops-lightbox" onClick={closeZoom} role="dialog" aria-modal="true" aria-label="Screenshot gallery">
           <img
-            src={zoomed.src}
-            alt={zoomed.label}
+            src={activeScreenshot.src}
+            alt={activeScreenshot.label}
             className="modal-lightbox-img"
             onClick={(e) => e.stopPropagation()}
           />
+          <div className="jedidiahops-lightbox-controls" onClick={(e) => e.stopPropagation()}>
+            <button onClick={() => navigate(-1)} aria-label="Previous enlarged screenshot">‹</button>
+            <span aria-live="polite">{activeIndex + 1} / {screenshots.length} · {activeScreenshot.label}</span>
+            <button onClick={() => navigate(1)} aria-label="Next enlarged screenshot">›</button>
+          </div>
           <button className="modal-lightbox-close" onClick={closeZoom} aria-label="Close enlarged image">✕</button>
         </div>
       )}
